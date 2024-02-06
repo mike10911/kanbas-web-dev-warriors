@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-pill {
+  background-color: red;
+  color: white;
+  border-radius: 15px;
+  width: 30px;
+  text-align: center;
+  font-size: 14px;
+  height: fit-content;
+}
+
+.wd-modules-link {
+  text-decoration: none;
+  color: #dc3545;
+}
+
+.wd-modules-link-lg:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.wd-modules-btn {
+  background-color: rgb(239, 239, 239);
+  color: rgb(41, 41, 41);
+  border-color: rgb(187, 187, 187);
+}
+
+.wd-modules-btn:hover {
+  background-color: rgb(221, 221, 221);
+  /* Need these to override bootstrap defaults */
+  color: rgb(41, 41, 41);
+  border-color: rgb(187, 187, 187);
+}
+
+.wd-modules-header {
+  color: white;
+  text-decoration: none;
+}
+
+.wd-modules-header:hover {
+  text-decoration: underline;
+}
+
+.icon-toggle div[aria-expanded='true'] .fa-chevron-down {
+  display: none;
+}
+.icon-toggle div[aria-expanded='false'] .fa-xmark {
+  display: none;
+}

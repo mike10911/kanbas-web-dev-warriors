@@ -1,102 +1,500 @@
 <html>
+  <head>
+    <link href="/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/Kanbas/styles.css" />
+    <link href="/Kanbas/Courses/Home/index.css" rel="stylesheet" />
+  </head>
   <body>
-    <table>
-      <tbody>
-        <tr>
-          <td valign="top">
-            <button>Collapse All</button>
-            <button>View Progress</button>
-            <select>
-              <option value="PUBLISH-ALL">Publish All</option>
-            </select>
-            <button>Module</button>
-            <ul>
-              <li>Week 0 - INTRO</li>
-              <ul>
-                <li>LEARNING OBJECTIVES</li>
-                <ul>
-                  <li>Introduction to the course</li>
-                  <li>Learn what is Web Development</li>
-                  <li>Creating a development environment</li>
-                  <li>Creating a Web Application</li>
-                  <li>Getting started with the 1st Assignment</li>
-                </ul>
-                <li>READING</li>
-                <ul>
-                  <li>Full Stack Developer - Chapter 1 - Introduction</li>
-                  <li>
-                    Full Stack Developer - Chapter 2 - Creating User Interfaces
-                    With HTML
-                  </li>
-                </ul>
-                <li>SLIDES</li>
-                <ul>
-                  <li>
-                    <a href="#"
-                      >Introduction to Web Development Links to an external
-                      site.</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      >Creating an HTTP server with Node.js Links to an external
-                      site.</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      >Creating a React Application Links to an external
-                      site.</a
-                    >
-                  </li>
-                </ul>
+    <div class="fluid-container">
+      <div class="d-flex gap-5">
+        <div class="flex-fill">
+          <div class="d-flex justify-content-end gap-1">
+            <button class="btn wd-modules-btn">Collapse All</button>
+            <button class="btn wd-modules-btn">View Progress</button>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle wd-modules-btn">
+                <i class="fa-regular fa-circle-check"></i> Publish All
+              </button>
+            </div>
+            <button class="btn btn-danger">
+              <i class="fa-solid fa-plus"></i> Module
+            </button>
+            <button class="btn wd-modules-btn">
+              <i class="fa fa-ellipsis-v"></i>
+            </button>
+          </div>
+          <hr />
+          <ul class="list-group wd-modules">
+            <li class="list-group-item">
+              <div
+                class="d-flex flex-row align-items-center justify-content-between"
+              >
+                <div class="d-flex flex-row align-items-center gap-2">
+                  <i class="fa-solid fa-grip-vertical"></i>
+                  <i class="fa-solid fa-caret-down"></i>
+                  Week 0 - INTRO
+                </div>
+                <span class="d-flex flex-row align-items-center gap-2">
+                  <div class="dropdown">
+                    <div class="dropdown-toggle">
+                      <i class="fa fa-check-circle text-success"></i>
+                    </div>
+                  </div>
+                  <i class="fa fa-plus ms-2"></i>
+                  <i class="fa fa-ellipsis-v ms-2"></i>
+                </span>
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>LEARNING OBJECTIVES</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Introduction to the course</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Learn what is Web Development</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Creating a development environment</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Creating a Web Application</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Getting started with the 1st Assignment</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
               </ul>
-              <li>Week 1 - HTML</li>
-              <ul>
-                <li>LEARNING OBJECTIVES</li>
-                <ul>
-                  <li>Learn how to create user interfaces with HTML</li>
-                  <li>Keep working on assignment 1</li>
-                  <li>Deploy the assignment to Netlify</li>
-                </ul>
-                <li>READING</li>
-                <ul>
-                  <li>Full Stack Developer - Chapter 1 - Introduction</li>
-                  <li>
-                    Full Stack Developer - Chapter 2 - Creating User Interfaces
-                    With HTML
-                  </li>
-                </ul>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>READING</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Full Stack Developer - Chapter 1 - Introduction</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>
+                        Full Stack Developer - Chapter 2 - Creating User
+                        Interfaces With HTML
+                      </p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
               </ul>
-            </ul>
-          </td>
-          <td valign="top">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>SLIDES</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-1">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <i class="fa-solid fa-link ms-1"></i>
+                      <a class="wd-modules-link" href="#">
+                        <p>
+                          Introduction to Web Development
+                          <i
+                            class="fa-solid fa-arrow-up-right-from-square fa-xs"
+                          ></i>
+                        </p>
+                      </a>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-1">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <i class="fa-solid fa-link ms-1"></i>
+                      <a class="wd-modules-link" href="#">
+                        <p>
+                          Creating an HTTP server with Node.js
+                          <i
+                            class="fa-solid fa-arrow-up-right-from-square fa-xs"
+                          ></i>
+                        </p>
+                      </a>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-1">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <i class="fa-solid fa-link ms-1"></i>
+                      <a class="wd-modules-link" href="#">
+                        <p>
+                          Creating a React Application
+                          <i
+                            class="fa-solid fa-arrow-up-right-from-square fa-xs"
+                          ></i>
+                        </p>
+                      </a>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div
+                class="d-flex flex-row align-items-center justify-content-between"
+              >
+                <div class="d-flex flex-row align-items-center gap-2">
+                  <i class="fa-solid fa-grip-vertical"></i>
+                  <i class="fa-solid fa-caret-down"></i>
+                  Week 1 - HTML
+                </div>
+                <span class="d-flex flex-row align-items-center gap-2">
+                  <div class="dropdown">
+                    <div class="dropdown-toggle">
+                      <i class="fa fa-check-circle text-success"></i>
+                    </div>
+                  </div>
+                  <i class="fa fa-plus ms-2"></i>
+                  <i class="fa fa-ellipsis-v ms-2"></i>
+                </span>
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>LEARNING OBJECTIVES</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Learn how to create user interfaces with HTML</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Keep working on assignment 1</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Deploy the assignment to Netlify</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>READING</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>Full Stack Developer - Chapter 1 - Introduction</p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div
+                    class="d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <div class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa-solid fa-grip-vertical"></i>
+                      <p>
+                        Full Stack Developer - Chapter 2 - Creating User
+                        Interfaces With HTML
+                      </p>
+                    </div>
+                    <span class="d-flex flex-row align-items-center gap-2">
+                      <i class="fa fa-check-circle text-success"></i>
+                      <i class="fa fa-ellipsis-v ms-2"></i>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="d-none d-xl-flex flex-grow-0 flex-column justify-content-start align-items-center wd-modules-btn-column gap-4"
+        >
+          <div class="d-flex flex-column align-items-start gap-1 w-100">
             <h2>Course Status</h2>
-            <button>Unpublish</button>
-            <button>Published</button>
-            <ul>
-              <li><a href="#">Import Existing Content</a></li>
-              <li><a href="#">Import From Commons</a></li>
-              <li><a href="#">Choose Home Page</a></li>
-              <li><a href="#">View Course Stream</a></li>
-              <li><a href="#">New Announcement</a></li>
-              <li><a href="#">New Analytics</a></li>
-              <li><a href="#">View Course Notifications</a></li>
-            </ul>
-            <h2>Comming Up</h2>
-            <a href="#">View Calendar</a>
-            <ul>
-              <li>
-                <a href="#">Lecture CS4550.12631.202410 Sep 7 at 11:45am</a>
-              </li>
-              <li>
-                <a href="#">Lecture CS4550.12631.202410 Sep 11 at 11:45am</a>
-              </li>
-              <li><a href="#">CS5610 06 SP23 Lecture Sep 11 at 6pm</a></li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <div class="btn-group w-100">
+              <button class="btn wd-modules-btn">
+                <i class="fa-solid fa-ban"></i>
+                Unpublish
+              </button>
+              <button class="btn wd-modules-btn-publish">
+                <i class="fa-solid fa-circle-check"></i> Published
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-1 align-items-center w-100">
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-solid fa-upload"></i> Import Existing Content
+            </button>
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-solid fa-right-from-bracket"></i> Import From Commons
+            </button>
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-solid fa-crosshairs"></i> Choose Home Page
+            </button>
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-solid fa-chart-simple fa-flip-horizontal"></i>
+              View Course Stream
+            </button>
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-solid fa-bullhorn"></i> New Announcement
+            </button>
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-solid fa-chart-simple fa-flip-horizontal"></i>
+              New Analytics
+            </button>
+            <button class="btn wd-modules-btn w-100 text-start">
+              <i class="fa-regular fa-bell"></i> View Course Notifications
+            </button>
+          </div>
+          <div class="d-flex flex-column align-items-start w-100 gap-2">
+            <div class="d-flex flex-column w-100">
+              <h2>To Do</h2>
+              <hr class="w-100 my-2 mx-0" />
+            </div>
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex gap-2">
+                <span class="text-pill" style="width: 20px; border-radius: 50%"
+                  >1</span
+                >
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-column">
+                    <a class="wd-modules-link" href="#"
+                      >Grade A1 - ENV + HTML</a
+                    >
+                    <p>100 points &centerdot; Sep 18 at 11:59am</p>
+                  </div>
+                </div>
+              </div>
+              <i
+                class="fa-solid fa-xmark fa-sm float-right"
+                style="color: gray"
+              ></i>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-start w-100 gap-2">
+            <div class="d-flex flex-column w-100">
+              <div
+                class="d-flex justify-content-between align-items-center w-100"
+              >
+                <h2>Coming Up</h2>
+
+                <a class="wd-modules-link" href="#"
+                  ><i class="fa-regular fa-calendar"></i> View Calendar</a
+                >
+              </div>
+              <hr class="w-100 my-2 mx-0" />
+            </div>
+            <div class="d-flex gap-2">
+              <i class="fa-solid fa-calendar-day mt-1"></i>
+              <div class="d-flex flex-column">
+                <a class="wd-modules-link" href="#">Lecture</a>
+                <p>CS4550.12631.202410</p>
+                <p>Sep 7 at 11:45am</p>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <i class="fa-solid fa-calendar-day mt-1"></i>
+              <div class="d-flex flex-column">
+                <a class="wd-modules-link" href="#">Lecture</a>
+                <p>CS4550.12631.202410</p>
+                <p>Sep 11 at 11:45am</p>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <i class="fa-solid fa-calendar-day mt-1"></i>
+              <div class="d-flex flex-column">
+                <a class="wd-modules-link" href="#">CS5610 06 SP23 Lecture</a>
+                <p>Sep 11 at 6pm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

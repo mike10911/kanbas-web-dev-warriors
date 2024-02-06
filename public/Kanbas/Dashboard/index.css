@@ -1,0 +1,18 @@
+.wd-card-container {
+  width: 300px;
+}
+
+.wd-card-img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.wd-card-title {
+  text-decoration: none;
+  color: navy;
+  font-weight: bold;
+}
+
+.wd-card-button {
+  color: lightgray;
+}
