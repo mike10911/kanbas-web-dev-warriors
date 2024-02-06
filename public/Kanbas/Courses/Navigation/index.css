@@ -33,9 +33,9 @@
   padding: 0px;
   width: 100%;
   margin: 0px;
-  position: absolute;
-  top: 80px;
-  z-index: 998;
+  /* position: absolute; */
+  /* top: 80px; */
+  /* z-index: 998; */
   border-bottom: 1px solid rgb(206, 206, 206);
 }
 
