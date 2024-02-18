@@ -1,0 +1,37 @@
+.wd-modules-btn-column {
+  width: 250px;
+  height: fit-content;
+}
+
+.wd-modules-btn-column .wd-modules-btn,
+.wd-modules-btn-column .wd-modules-btn-publish {
+  display: flex;
+  gap: 6px;
+  justify-content: start;
+  align-items: center;
+}
+
+.wd-modules-btn-column h2 {
+  /* Override bootstrap defaults for h2 */
+  font-size: 18px;
+  margin: 0;
+}
+
+.wd-modules-btn-column p {
+  /* Override bootstrap defaults for p */
+  font-size: 13px;
+  color: gray;
+  margin: 0;
+  padding: 0;
+}
+
+.wd-modules-btn-publish {
+  color: white;
+  background-color: rgb(133, 212, 133);
+}
+
+.wd-modules-btn-publish:hover {
+  /* Need these overrides to prevent default button hover styling */
+  color: white;
+  background-color: rgb(133, 212, 133);
+}

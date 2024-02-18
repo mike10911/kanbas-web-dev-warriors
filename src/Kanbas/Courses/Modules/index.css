@@ -1,0 +1,43 @@
+.wd-modules,
+.wd-modules * {
+  border-radius: 0%;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.wd-modules {
+  margin: 5px;
+}
+
+.wd-modules > li {
+  background-color: rgb(239, 239, 239);
+  border: 1px solid rgb(206, 206, 206) !important;
+  border-left: none !important;
+}
+
+.wd-modules > li > div {
+  padding: 12px 8px;
+  border-left: 1px solid rgb(206, 206, 206) !important;
+}
+
+.wd-modules > li > ul > li {
+  padding: 10px 7px;
+  /* overriding so that double ellipsis for inner list items are aligned */
+  padding-right: 8px;
+  border-top: 1px solid rgb(206, 206, 206) !important;
+  border-left: 2px solid green;
+}
+
+/* These are deprecated temporarily */
+/* .wd-modules > li > ul > li:not(:first-child) p {
+  margin-left: 24px;
+} */
+
+/* .wd-modules > li > ul > li:not(:first-child) a > p {
+  margin-left: 0;
+} */
+
+.wd-modules > li {
+  margin-bottom: 20px;
+}

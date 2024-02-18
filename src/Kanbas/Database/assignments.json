@@ -1,0 +1,170 @@
+[
+  {
+    "_id": "A101",
+    "title": "Propulsion Assignment",
+    "course": "RS101",
+    "dueDate": "2024-03-05T23:59:00",
+    "availableDate": "2024-02-04T23:59:00",
+    "points": 100
+  },
+  {
+    "_id": "A102",
+    "title": "Combustion Analysis",
+    "course": "RS101",
+    "dueDate": "2024-03-12T23:59:00",
+    "availableDate": "2024-02-01T23:59:00",
+    "points": 100
+  },
+  {
+    "_id": "A103",
+    "title": "Nozzle Design Project",
+    "course": "RS101",
+    "dueDate": "2024-04-16T23:59:00",
+    "availableDate": "2024-03-15T23:59:00",
+    "points": 300
+  },
+  {
+    "_id": "A201",
+    "title": "Aerodynamics Quiz",
+    "course": "RS102",
+    "dueDate": "2024-03-05T23:59:00",
+    "availableDate": "2024-02-04T23:59:00",
+    "points": 10
+  },
+  {
+    "_id": "A202",
+    "title": "Flow Analysis",
+    "course": "RS102",
+    "dueDate": "2024-05-10T23:59:00",
+    "availableDate": "2024-04-10T23:59:00",
+    "points": 50
+  },
+  {
+    "_id": "A203",
+    "title": "Heating Analysis",
+    "course": "RS102",
+    "dueDate": "2024-05-10T23:59:00",
+    "availableDate": "2024-04-16T23:59:00",
+    "points": 50
+  },
+  {
+    "_id": "A301",
+    "title": "Structural Design Task",
+    "course": "RS103",
+    "dueDate": "2024-03-18T23:59:00",
+    "availableDate": "2024-01-04T23:59:00",
+    "points": 40
+  },
+  {
+    "_id": "A302",
+    "title": "Orbital Calculations",
+    "course": "RS103",
+    "dueDate": "2024-04-01T23:59:00",
+    "availableDate": "2024-01-16T23:59:00",
+    "points": 100
+  },
+  {
+    "_id": "A303",
+    "title": "Systems Engineering Exam",
+    "course": "RS103",
+    "dueDate": "2024-05-12T23:59:00",
+    "availableDate": "2024-02-04T23:59:00",
+    "points": 500
+  },
+  {
+    "_id": "A401",
+    "title": "Play Minecraft",
+    "course": "RS104",
+    "dueDate": "2024-12-31T23:59:00",
+    "availableDate": "2024-01-01T23:59:00",
+    "points": 10000
+  },
+  {
+    "_id": "A501",
+    "title": "Build Pac Man",
+    "course": "RS105",
+    "dueDate": "2024-03-01T23:59:00",
+    "availableDate": "2024-02-01T23:59:00",
+    "points": 50
+  },
+  {
+    "_id": "A502",
+    "title": "Build Metal Gear Solid 2",
+    "course": "RS105",
+    "dueDate": "2024-04-01T23:59:00",
+    "availableDate": "2024-03-01T23:59:00",
+    "points": 200
+  },
+  {
+    "_id": "A503",
+    "title": "Build Stardew Valley",
+    "course": "RS105",
+    "dueDate": "2024-05-01T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 100
+  },
+  {
+    "_id": "A504",
+    "title": "Build FFXIV",
+    "course": "RS105",
+    "dueDate": "2024-08-01T23:59:00",
+    "availableDate": "2024-05-01T23:59:00",
+    "points": 1000
+  },
+  {
+    "_id": "A601",
+    "title": "Learn Beethoven - Piano Sonata No. 14 (Moonlight Sonata) (3rd Movement)",
+    "course": "RS106",
+    "dueDate": "2024-04-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 30
+  },
+  {
+    "_id": "A602",
+    "title": "Learn Beethoven - Violin Sonata No. 9 (Kreutzer Sonata) (1st Movement)",
+    "course": "RS106",
+    "dueDate": "2024-04-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 30
+  },
+  {
+    "_id": "A603",
+    "title": "Learn Saint-Saëns - Introduction and Rondo Capriccioso",
+    "course": "RS106",
+    "dueDate": "2024-04-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 30
+  },
+  {
+    "_id": "A604",
+    "title": "Learn Chopin - Etude Op. 25, No. 5 (Wrong Note)",
+    "course": "RS106",
+    "dueDate": "2024-04-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 30
+  },
+  {
+    "_id": "A605",
+    "title": "Learn Chopin - Etude Op. 10, No. 4 (Torrent)",
+    "course": "RS106",
+    "dueDate": "2024-04-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 30
+  },
+  {
+    "_id": "A606",
+    "title": "Learn Chopin - Etude Op. 25, No. 11 (Winter Wind)",
+    "course": "RS106",
+    "dueDate": "2024-04-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 30
+  },
+  {
+    "_id": "A701",
+    "title": "Learn Fullstack Development (self-study)",
+    "course": "RS107",
+    "dueDate": "2024-07-30T23:59:00",
+    "availableDate": "2024-04-01T23:59:00",
+    "points": 2000
+  }
+]

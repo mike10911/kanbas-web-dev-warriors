@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-pill {
+  background-color: red;
+  color: white;
+  border-radius: 15px;
+  width: 30px;
+  text-align: center;
+  font-size: 14px;
+  height: fit-content;
+}
+
+.wd-modules-link {
+  text-decoration: none;
+  color: #dc3545;
+  max-width: 200px;
+}
+
+.wd-kanbas-hamburger-icon {
+  text-decoration: none;
+  color: #dc3545;
+}
+
+.wd-modules-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(239, 239, 239);
+  color: rgb(41, 41, 41);
+  border-color: rgb(187, 187, 187);
+}
+
+.wd-modules-btn:hover {
+  background-color: rgb(221, 221, 221);
+  /* Need these to override bootstrap defaults */
+  color: rgb(41, 41, 41);
+  border-color: rgb(187, 187, 187);
+}
+
+.wd-modules-header {
+  color: white;
+  text-decoration: none;
+}
+
+.wd-modules-header:hover {
+  text-decoration: underline;
+}

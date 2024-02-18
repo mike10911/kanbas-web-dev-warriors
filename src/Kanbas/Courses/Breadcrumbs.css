@@ -1,0 +1,13 @@
+.icon-btn:hover {
+  cursor: pointer;
+}
+
+.wd-breadcrumb-header {
+  text-decoration: none;
+  color: #dc3545;
+}
+
+.wd-breadcrumb-header:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}

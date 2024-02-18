@@ -1,0 +1,30 @@
+.wd-assignment-pill {
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 2em;
+  border: 1px solid rgb(206, 206, 206) !important;
+  /* background-color: rgb(239, 239, 239); */
+}
+
+.wd-assignment-link {
+  text-decoration: none;
+  color: #212529;
+}
+
+.wd-assignment-link:hover {
+  text-decoration: underline;
+}
+
+.wd-assignment-subtitle {
+  max-width: max(450px, 100%);
+  word-wrap: normal;
+  font-size: 14px;
+}
+
+.wd-assignment-subtitle-link {
+  text-decoration: none;
+}
+
+.wd-assignment-subtitle-link:hover {
+  text-decoration: underline;
+}
