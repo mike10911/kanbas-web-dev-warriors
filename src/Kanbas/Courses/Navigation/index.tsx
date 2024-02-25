@@ -1,8 +1,12 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import './index.css';
-import { courses } from '../../Database';
+import { Course } from '../..';
 
-function CourseNavigation() {
+export interface CourseNavigationProps {
+  courses: Course[];
+}
+
+const CourseNavigation: React.FC<CourseNavigationProps> = ({ courses }) => {
   const links = ['Home', 'Modules', 'Piazza', 'Grades', 'Assignments'];
   const { pathname } = useLocation();
   const { courseId } = useParams();
@@ -31,6 +35,6 @@ function CourseNavigation() {
       </ul>
     </div>
   );
-}
+};
 
 export default CourseNavigation;

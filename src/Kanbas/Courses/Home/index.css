@@ -7,7 +7,7 @@
 .wd-modules-btn-column .wd-modules-btn-publish {
   display: flex;
   gap: 6px;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 

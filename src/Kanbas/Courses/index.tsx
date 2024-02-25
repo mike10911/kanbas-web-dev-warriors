@@ -5,17 +5,26 @@ import Modules from './Modules';
 import Home from './Home';
 import Assignments from './Assignments';
 import Breadcrumbs from './Breadcrumbs';
+import { Course } from '..';
 
-function Courses() {
+export interface CoursesProps {
+  courses: Course[];
+}
+
+const Courses: React.FC<CoursesProps> = ({ courses }) => {
   const [showCourseNav, setShowCourseNav] = useState(true);
   const { courseId } = useParams();
 
   return (
     <div>
-      <Breadcrumbs courseId={courseId} onHamburgerClick={setShowCourseNav} />
+      <Breadcrumbs
+        courseId={courseId}
+        courses={courses}
+        onHamburgerClick={setShowCourseNav}
+      />
       <hr className='d-none d-lg-block mx-4 my-0' />
       <div className={`d-flex mx-4 ${showCourseNav ? 'ms-md-0' : ''}`}>
-        {showCourseNav && <CourseNavigation />}
+        {showCourseNav && <CourseNavigation courses={courses} />}
         <div className={'flex-fill my-3'}>
           <Routes>
             <Route path='/' element={<Navigate to='Home' />} />
@@ -33,6 +42,6 @@ function Courses() {
       </div>
     </div>
   );
-}
+};
 
 export default Courses;

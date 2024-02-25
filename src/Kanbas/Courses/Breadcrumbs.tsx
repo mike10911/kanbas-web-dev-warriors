@@ -1,17 +1,19 @@
 import { FaChevronRight, FaGlasses } from 'react-icons/fa';
 import { HiMiniBars3 } from 'react-icons/hi2';
 import { Link, useLocation } from 'react-router-dom';
-import { courses } from '../Database';
 import { useMemo } from 'react';
 import './Breadcrumbs.css';
+import { Course } from '..';
 
-interface BreadcrumbsProps {
+export interface BreadcrumbsProps {
   courseId?: string;
+  courses: Course[];
   onHamburgerClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   courseId,
+  courses,
   onHamburgerClick,
 }) => {
   const course = courses.find((course) => course._id === courseId);

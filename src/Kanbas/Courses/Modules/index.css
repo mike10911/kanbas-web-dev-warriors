@@ -1,5 +1,5 @@
 .wd-modules,
-.wd-modules * {
+.wd-modules *:not(button) {
   border-radius: 0%;
   border: none;
   margin: 0px;
