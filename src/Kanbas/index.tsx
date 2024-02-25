@@ -60,7 +60,7 @@ function Kanbas() {
   return (
     <Provider store={store}>
       <div className='d-flex flex-column flex-lg-row'>
-        <KanbasNavigation />
+        <KanbasNavigation courses={courses} />
         <div style={{ flexGrow: 1 }}>
           <Routes>
             <Route path='/' element={<Navigate to='Dashboard' />} />

@@ -16,12 +16,16 @@ import {
   FaXmark,
 } from 'react-icons/fa6';
 import { HiMiniBars3, HiVideoCamera } from 'react-icons/hi2';
-import { courses } from '../Database';
 import { useState, useMemo, useCallback } from 'react';
 import NavigationMobile from './NavigationMobile';
 import PageNavigationMobile from './PageNavigationMobile';
+import { Course } from '..';
 
-function KanbasNavigation() {
+export interface KanbasNavigationProps {
+  courses: Course[];
+}
+
+const KanbasNavigation: React.FC<KanbasNavigationProps> = ({ courses }) => {
   const [showPageNavMobile, setShowPageNavMobile] = useState(false);
   const [showKanbasNavMobile, setShowKanbasNavMobile] = useState(false);
   const { pathname } = useLocation();
@@ -188,5 +192,5 @@ function KanbasNavigation() {
       )}
     </>
   );
-}
+};
 export default KanbasNavigation;

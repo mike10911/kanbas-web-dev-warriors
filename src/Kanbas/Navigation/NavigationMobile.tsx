@@ -22,7 +22,7 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
         </li>
         {links.map((link, index) => (
           <li key={index}>
-            <Link to={`/Kanbas/${link.label}`}>
+            <Link to={`/Kanbas/${link.label}`} onClick={onClose}>
               {' '}
               {link.icon} {link.label}{' '}
             </Link>
