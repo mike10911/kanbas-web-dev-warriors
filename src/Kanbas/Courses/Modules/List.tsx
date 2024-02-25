@@ -24,7 +24,9 @@ function ModuleList() {
     state.modulesReducer.modules.filter((m) => m.course === courseId)
   );
   // module whose lessons are currently displayed
-  const [selectedModule, setSelectedModule] = useState<Module>(moduleList[0]);
+  const [selectedModule, setSelectedModule] = useState<Module | null>(
+    moduleList.length > 0 ? moduleList[0] : null
+  );
   // module that is selected by the form
   const module = useSelector(
     (state: KanbasState) => state.modulesReducer.module
@@ -94,7 +96,7 @@ function ModuleList() {
               className='btn btn-secondary'
               onClick={() => {
                 dispatch(updateModule(module));
-                if (module._id === selectedModule._id) {
+                if (module._id === selectedModule?._id) {
                   setSelectedModule(module);
                 }
               }}
@@ -162,7 +164,7 @@ function ModuleList() {
                 <FaEllipsisV />
               </span>
             </div>
-            {selectedModule._id === module._id && (
+            {selectedModule?._id === module._id && (
               <ul className='list-group'>
                 {module.lessons?.map((lesson) => (
                   <li key={lesson._id} className='list-group-item'>
