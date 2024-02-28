@@ -107,29 +107,6 @@ function ModuleList() {
         </div>
       </div>
       <ul className='list-group wd-modules'>
-        {/* <li className='list-group-item'>
-          <button className='btn btn-primary' onClick={() => addModule(module)}>
-            Add
-          </button>
-          <input
-            value={module.name}
-            onChange={(e) =>
-              setModule({
-                ...module,
-                name: e.target.value,
-              })
-            }
-          />
-          <textarea
-            value={module.description}
-            onChange={(e) =>
-              setModule({
-                ...module,
-                description: e.target.value,
-              })
-            }
-          />
-        </li> */}
         {moduleList.map((module) => (
           <li
             key={module._id}
