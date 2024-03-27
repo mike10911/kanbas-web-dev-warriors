@@ -1,11 +1,12 @@
-import { Navigate, Route, Routes, useParams } from 'react-router-dom';
-import CourseNavigation from './Navigation';
-import { useState } from 'react';
-import Modules from './Modules';
-import Home from './Home';
-import Assignments from './Assignments';
-import Breadcrumbs from './Breadcrumbs';
-import { Course } from '..';
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
+import CourseNavigation from "./Navigation";
+import { useState } from "react";
+import Modules from "./Modules";
+import Home from "./Home";
+import Assignments from "./Assignments";
+import Breadcrumbs from "./Breadcrumbs";
+import { Course } from "..";
+import Quizzes from "./Quizzes";
 
 export interface CoursesProps {
   courses: Course[];
@@ -22,21 +23,22 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
         courses={courses}
         onHamburgerClick={setShowCourseNav}
       />
-      <hr className='d-none d-lg-block mx-4 my-0' />
-      <div className={`d-flex mx-4 ${showCourseNav ? 'ms-md-0' : ''}`}>
+      <hr className="d-none d-lg-block mx-4 my-0" />
+      <div className={`d-flex mx-4 ${showCourseNav ? "ms-md-0" : ""}`}>
         {showCourseNav && <CourseNavigation courses={courses} />}
-        <div className={'flex-fill my-3'}>
+        <div className={"flex-fill my-3"}>
           <Routes>
-            <Route path='/' element={<Navigate to='Home' />} />
-            <Route path='Home' element={<Home />} />
-            <Route path='Modules' element={<Modules />} />
-            <Route path='Piazza' element={<h1>Piazza</h1>} />
-            <Route path='Assignments' element={<Assignments />} />
+            <Route path="/" element={<Navigate to="Home" />} />
+            <Route path="Home" element={<Home />} />
+            <Route path="Modules" element={<Modules />} />
+            <Route path="Piazza" element={<h1>Piazza</h1>} />
+            <Route path="Assignments" element={<Assignments />} />
+            <Route path="Quizzes" element={<Quizzes />} />
             <Route
-              path='Assignments/:assignmentId'
+              path="Assignments/:assignmentId"
               element={<h1>Assignment Editor</h1>}
             />
-            <Route path='Grades' element={<h1>Grades</h1>} />
+            <Route path="Grades" element={<h1>Grades</h1>} />
           </Routes>
         </div>
       </div>

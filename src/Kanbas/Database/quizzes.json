@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "isPublished": true,
+    "questions": [
+      {
+        "id": 1,
+        "title": "Question title",
+        "points": 5,
+        "description": "question description",
+        "answers": [
+          {
+            "title": "5",
+            "isCorrect": true
+          },
+          {
+            "title": "5",
+            "isCorrect": true
+          },
+          {
+            "title": "5",
+            "isCorrect": true
+          },
+          {
+            "title": "5",
+            "isCorrect": true
+          }
+        ]
+      }
+    ],
+    "title": "title",
+    "description": "description",
+    "type": "quiz type",
+    "points": 10,
+    "assignmentGroup": "group",
+    "shuffleAnswers": true,
+    "timeLimit": 20,
+    "multipleAttempts": true,
+    "showCorrectAnswers": "2024-03-27T22:49:04.833Z",
+    "accessCode": "code",
+    "oneQuestionAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": true,
+    "dueDate": "2024-03-27T22:49:04.833Z",
+    "availableDate": "2024-03-27T22:49:04.833Z",
+    "untilDate": "2024-03-27T22:49:04.833Z"
+  }
+]
