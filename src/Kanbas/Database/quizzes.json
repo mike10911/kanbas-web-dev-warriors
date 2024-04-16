@@ -6,7 +6,7 @@
       {
         "_id": 1,
         "title": "Question 1",
-        "type": "Fill in the Blank",
+        "type": "Multiple Choice",
         "points": 5,
         "description": "Which gemstone gets its name from the Latin word granatus, which means “grain” or “seed,” in this case referring to pomegranate seeds?",
         "answers": [
@@ -187,6 +187,23 @@
           {
             "answer": "United States",
             "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 80,
+        "title": "Question 8",
+        "type": "Fill in the Blank",
+        "points": 5,
+        "description": "Fill in the blanks. The quick brown fox jumps over the lazy ______. ______ comes after Tuesday.",
+        "answers": [
+          {
+            "answer": "dog",
+            "correct": true
+          },
+          {
+            "answer": "Wednesday",
+            "correct": true
           }
         ]
       }
