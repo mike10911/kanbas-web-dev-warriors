@@ -19,7 +19,14 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   const course = courses.find((course) => course._id === courseId);
   const { pathname } = useLocation();
   const page = useMemo(() => {
-    const links = ['Home', 'Modules', 'Piazza', 'Grades', 'Assignments'];
+    const links = [
+      'Home',
+      'Modules',
+      'Piazza',
+      'Grades',
+      'Assignments',
+      'Quizzes',
+    ];
     const routes = pathname.split('/');
     const currentPage = routes.find((route) => links.includes(route));
     return currentPage === 'Home' ? 'Modules' : currentPage;
@@ -41,6 +48,12 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           <>
             <FaChevronRight className='fs-6' />
             <p className='m-0 fs-5'>Edit</p>
+          </>
+        )}
+        {page === 'Quizzes' && pathname.split('/').at(-1) !== page && (
+          <>
+            <FaChevronRight className='fs-6' />
+            <p className='m-0 fs-5'>TODO: update to be quiz title</p>
           </>
         )}
       </div>
