@@ -1,48 +1,430 @@
 [
   {
-    "id": 1,
+    "_id": 1,
     "isPublished": true,
     "questions": [
       {
-        "id": 1,
-        "title": "Question title",
+        "_id": 1,
+        "title": "Question 1",
+        "type": "Multiple Choice",
         "points": 5,
-        "description": "question description",
+        "description": "Which gemstone gets its name from the Latin word granatus, which means “grain” or “seed,” in this case referring to pomegranate seeds?",
         "answers": [
           {
-            "title": "5",
-            "isCorrect": true
+            "answer": "Garnets",
+            "correct": true
           },
           {
-            "title": "5",
-            "isCorrect": true
+            "answer": "Diamonds",
+            "correct": false
           },
           {
-            "title": "5",
-            "isCorrect": true
+            "answer": "Rubies",
+            "correct": false
           },
           {
-            "title": "5",
-            "isCorrect": true
+            "answer": "Emeralds",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 2,
+        "title": "Question 2",
+        "type": "True/False",
+        "points": 5,
+        "description": "True or False: Germans were the first to brew beer.",
+        "answers": [
+          {
+            "answer": "True",
+            "correct": true
+          },
+          {
+            "answer": "False",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 3,
+        "title": "Question 3",
+        "type": "Multiple Choice",
+        "points": 5,
+        "description": "In Sesame Street, one of the Count’s love interests is _______, who tallies numbers in descending order.",
+        "answers": [
+          {
+            "answer": "Countess von Backwards",
+            "correct": true
+          },
+          {
+            "answer": "Cookie Monster",
+            "correct": false
+          },
+          {
+            "answer": "Elmo",
+            "correct": false
+          },
+          {
+            "answer": "Big Bird",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 4,
+        "title": "Question 4",
+        "type": "Multiple Choice",
+        "points": 5,
+        "description": "Which major aircraft manufacturer unveiled its lighter, smoother, more turbulent-resistant 787 Dreamliner in 2007?",
+        "answers": [
+          {
+            "answer": "Airbus",
+            "correct": false
+          },
+          {
+            "answer": "Tesla",
+            "correct": false
+          },
+          {
+            "answer": "Amazon",
+            "correct": false
+          },
+          {
+            "answer": "Boeing",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "_id": 5,
+        "title": "Question 5",
+        "type": "Fill in the Blank",
+        "points": 5,
+        "description": "Which of the following are a type of bird?",
+        "answers": [
+          {
+            "answer": "Eagle",
+            "correct": true
+          },
+          {
+            "answer": "Hippopotamus",
+            "correct": false
+          },
+          {
+            "answer": "Platypus",
+            "correct": false
+          },
+          {
+            "answer": "Owl",
+            "correct": true
+          },
+          {
+            "answer": "Penguin",
+            "correct": true
+          },
+          {
+            "answer": "Walrus",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 6,
+        "title": "Question 6",
+        "type": "Multiple Choice",
+        "points": 5,
+        "description": "What piece on a chess board moves in an L-shape?",
+        "answers": [
+          {
+            "answer": "Pawn",
+            "correct": false
+          },
+          {
+            "answer": "Knight",
+            "correct": true
+          },
+          {
+            "answer": "Bishop",
+            "correct": false
+          },
+          {
+            "answer": "Rook",
+            "correct": false
+          },
+          {
+            "answer": "Queen",
+            "correct": false
+          },
+          {
+            "answer": "King",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 7,
+        "title": "Question 7",
+        "type": "Multiple Choice",
+        "points": 5,
+        "description": "From which country do French fries originate?",
+        "answers": [
+          {
+            "answer": "France",
+            "correct": false
+          },
+          {
+            "answer": "Canada",
+            "correct": false
+          },
+          {
+            "answer": "Belgium",
+            "correct": true
+          },
+          {
+            "answer": "Germany",
+            "correct": false
+          },
+          {
+            "answer": "United States",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 80,
+        "title": "Question 8",
+        "type": "Fill in the Blank",
+        "points": 5,
+        "description": "Fill in the blanks. The quick brown fox jumps over the lazy ______. ______ comes after Tuesday.",
+        "answers": [
+          {
+            "answer": "dog",
+            "correct": true
+          },
+          {
+            "answer": "Wednesday",
+            "correct": true
           }
         ]
       }
     ],
-    "title": "title",
-    "description": "description",
-    "type": "quiz type",
-    "points": 10,
-    "assignmentGroup": "group",
+    "title": "Quiz 1",
+    "description": "Trivia facts for fun!",
+    "type": "Graded Quiz",
+    "points": 35,
+    "assignmentGroup": "Quizzes",
     "shuffleAnswers": true,
     "timeLimit": 20,
-    "multipleAttempts": true,
-    "showCorrectAnswers": "2024-03-27T22:49:04.833Z",
-    "accessCode": "code",
+    "multipleAttempts": false,
+    "showCorrectAnswers": "2024-04-10T00:00:00.000Z",
+    "accessCode": "",
     "oneQuestionAtATime": true,
     "webcamRequired": false,
-    "lockQuestionsAfterAnswering": true,
-    "dueDate": "2024-03-27T22:49:04.833Z",
-    "availableDate": "2024-03-27T22:49:04.833Z",
-    "untilDate": "2024-03-27T22:49:04.833Z"
+    "lockQuestionsAfterAnswering": false,
+    "dueDate": "2024-04-08T23:59:59.999Z",
+    "availableDate": "2024-04-07T00:00:00.000Z",
+    "untilDate": "2024-04-09T23:59:59.999Z"
+  },
+  {
+    "_id": 2,
+    "isPublished": true,
+    "questions": [
+      {
+        "_id": 8,
+        "title": "Question 1",
+        "type": "Multiple Choice",
+        "points": 10,
+        "description": "Which fast-food chain is closed on Sundays?",
+        "answers": [
+          {
+            "answer": "Burger King",
+            "correct": false
+          },
+          {
+            "answer": "McDonald's",
+            "correct": false
+          },
+          {
+            "answer": "Chick-fil-A",
+            "correct": true
+          },
+          {
+            "answer": "In-N-Out",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 9,
+        "title": "Question 2",
+        "type": "Multiple Choice",
+        "points": 2,
+        "description": "How many sides does a stop sign have?",
+        "answers": [
+          {
+            "answer": "1",
+            "correct": false
+          },
+          {
+            "answer": "3",
+            "correct": false
+          },
+          {
+            "answer": "4",
+            "correct": false
+          },
+          {
+            "answer": "8",
+            "correct": false
+          },
+          {
+            "answer": "12",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 10,
+        "title": "Question 3",
+        "type": "Multiple Choice",
+        "points": 5,
+        "description": "What is the color of an emerald?",
+        "answers": [
+          {
+            "answer": "Red",
+            "correct": false
+          },
+          {
+            "answer": "Green",
+            "correct": true
+          },
+          {
+            "answer": "Blue",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 11,
+        "title": "Question 4",
+        "type": "Multiple Choice",
+        "points": 15,
+        "description": "What slang term for a personal-portrait photo was first used by an Australian in an online blog in 2002?",
+        "answers": [
+          {
+            "answer": "Selfie",
+            "correct": true
+          },
+          {
+            "answer": "Yeet",
+            "correct": false
+          },
+          {
+            "answer": "Yoink",
+            "correct": false
+          },
+          {
+            "answer": "Self Me",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 12,
+        "title": "Question 5",
+        "type": "Multiple Choice",
+        "points": 20,
+        "description": "What is the annual San Diego pop culture event that sells out almost every year?",
+        "answers": [
+          {
+            "answer": "Anime Expo",
+            "correct": false
+          },
+          {
+            "answer": "Comic-Con",
+            "correct": true
+          },
+          {
+            "answer": "E3",
+            "correct": false
+          },
+          {
+            "answer": "PAX",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 13,
+        "title": "Question 6",
+        "type": "True/False",
+        "points": 2,
+        "description": "Origami originates from Japan.",
+        "answers": [
+          {
+            "answer": "True",
+            "correct": true
+          },
+          {
+            "answer": "False",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "_id": 14,
+        "title": "Question 7",
+        "type": "Multiple Choice",
+        "points": 9,
+        "description": "What is an oenophile an expert in?",
+        "answers": [
+          {
+            "answer": "Wine",
+            "correct": true
+          },
+          {
+            "answer": "Beer",
+            "correct": false
+          }
+        ]
+      }
+    ],
+    "title": "Quiz 2",
+    "description": "Fun trivia facts pt. 2!",
+    "type": "Graded Quiz",
+    "points": 63,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": true,
+    "timeLimit": 30,
+    "multipleAttempts": true,
+    "showCorrectAnswers": "2024-04-10T00:00:00.000Z",
+    "accessCode": "boink",
+    "oneQuestionAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "dueDate": "2024-04-08T23:59:59.999Z",
+    "availableDate": "2024-04-07T00:00:00.000Z",
+    "untilDate": "2024-04-09T23:59:59.999Z"
+  },
+  {
+    "_id": 3,
+    "isPublished": true,
+    "questions": [],
+    "title": "Quiz 3",
+    "description": "This quiz has no questions!",
+    "type": "Graded Quiz",
+    "points": 0,
+    "assignmentGroup": "Quizzes",
+    "shuffleAnswers": true,
+    "timeLimit": 20,
+    "multipleAttempts": false,
+    "showCorrectAnswers": "2024-04-10T00:00:00.000Z",
+    "accessCode": "",
+    "oneQuestionAtATime": true,
+    "webcamRequired": false,
+    "lockQuestionsAfterAnswering": false,
+    "dueDate": "2024-04-08T23:59:59.999Z",
+    "availableDate": "2024-04-07T00:00:00.000Z",
+    "untilDate": "2024-04-09T23:59:59.999Z"
   }
 ]
