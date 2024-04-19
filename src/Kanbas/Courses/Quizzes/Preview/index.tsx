@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import QuizHeaderPreview from './QuizPreviewHeader';
-import QuizContent from './QuizContent';
-import QuestionList from './QuestionList';
-import { quizzes } from '../../../Database';
+import React, { useState } from "react";
+import QuizHeaderPreview from "./QuizPreviewHeader";
+import QuizContent from "./QuizContent";
+import QuestionList from "./QuestionList";
+import { quizzes } from "../../../Database";
 
 export type Answer = {
   answer: string;
@@ -10,9 +10,9 @@ export type Answer = {
 };
 
 export enum QuestionType {
-  MULTIPLE_CHOICE = 'Multiple Choice',
-  TRUE_FALSE = 'True/False',
-  FILL_IN_THE_BLANK = 'Fill in the Blank',
+  MULTIPLE_CHOICE = "Multiple Choice",
+  TRUE_FALSE = "True/False",
+  FILL_IN_THE_BLANK = "Fill in the Blank",
 }
 
 export type Question = {
@@ -22,20 +22,21 @@ export type Question = {
   points: number;
   description: string;
   answers: Answer[];
+  options: string[];
 };
 
 export enum QuizType {
-  GRADED_QUIZ = 'Graded Quiz',
-  PRACTICE_QUIZ = 'Practice Quiz',
-  GRADED_SURVEY = 'Graded Survey',
-  UNGRADED_SURVEY = 'Ungraded Survey',
+  GRADED_QUIZ = "Graded Quiz",
+  PRACTICE_QUIZ = "Practice Quiz",
+  GRADED_SURVEY = "Graded Survey",
+  UNGRADED_SURVEY = "Ungraded Survey",
 }
 
 export enum AssignmentGroup {
-  QUIZZES = 'Quizzes',
-  ASSIGNMENTS = 'Assignments',
-  EXAMS = 'Exams',
-  PROJECTS = 'Projects',
+  QUIZZES = "Quizzes",
+  ASSIGNMENTS = "Assignments",
+  EXAMS = "Exams",
+  PROJECTS = "Projects",
 }
 
 export type Quiz = {
@@ -78,14 +79,14 @@ banner to say that it's a preview
 - at bottom, show list of all questions where the links are all clickable and the current question link is bolded
 */
 const QuizPreview = () => {
-  const quizTitle = 'Q1 - HTML';
+  const quizTitle = "Q1 - HTML";
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const handleChangeQuestion = (index: number) =>
     setCurrentQuestionIndex(index);
 
   return (
-    <div className='d-flex flex-column gap-1'>
+    <div className="d-flex flex-column gap-1">
       <QuizHeaderPreview title={quizTitle} startedAt={new Date()} />
       <QuizContent
         oneQuestionAtATime={true}
