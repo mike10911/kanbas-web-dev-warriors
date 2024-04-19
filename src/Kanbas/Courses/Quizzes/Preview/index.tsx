@@ -83,14 +83,15 @@ const QuizPreview = () => {
   const [answers, setAnswers] = useState<string[][]>([]);
   const [taggedQuestions, setTaggedQuestions] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [quizResults, setQuizResults] = useState<boolean[]>([]);
 
   useEffect(() => {
     // fetch quiz from BE
     const fetchQuiz = async () => {
       // TODO: replace with actual fetch call
-      setQuiz(JSON.parse(JSON.stringify(quizzes[0])));
+      setQuiz(JSON.parse(JSON.stringify(quizzes[1])));
       setAnswers(
-        quizzes[0].questions.map((question) =>
+        quizzes[1].questions.map((question) =>
           question.type === QuestionType.FILL_IN_THE_BLANK
             ? question.options.map(() => '')
             : ['']
@@ -114,6 +115,14 @@ const QuizPreview = () => {
       'grade teh quiz score for the preview test run but dont save it anywhere?'
     );
     console.log('submitted answers', answers);
+    const results = answers.map(
+      (userAnswers, index) =>
+        quiz?.questions[index].answers.every(
+          (ans, i) => ans === userAnswers[i]
+        ) ?? false
+    );
+    console.log('results', results);
+    setQuizResults(results);
   };
 
   const handleSaveAnswer = (

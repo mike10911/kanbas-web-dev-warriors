@@ -1,6 +1,6 @@
 import { Question } from '.';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
-import { PiTagSimple, PiTagSimpleFill } from 'react-icons/pi';
+import { PiTagSimpleFill } from 'react-icons/pi';
 import './QuestionList.css';
 import useQuizPreview from '../hooks/useQuizPreview';
 

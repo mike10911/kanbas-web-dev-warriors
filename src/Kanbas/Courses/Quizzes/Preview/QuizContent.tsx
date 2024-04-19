@@ -4,6 +4,7 @@ import QuestionBox from './QuestionBox';
 import { MdArrowRight, MdArrowLeft, MdOutlineEdit } from 'react-icons/md';
 import './QuizContent.css';
 import { useState } from 'react';
+import useQuizPreview from '../hooks/useQuizPreview';
 
 /**
  * from quiz instructions to keep editing this quiz button
@@ -34,6 +35,7 @@ export default function QuizContent({
   handleSubmit,
   handleSaveAnswer,
 }: QuizContentProps) {
+  const { answers } = useQuizPreview();
   const [formattedSavedAt, setFormattedSavedAt] = useState(
     format(new Date(), UPDATED_AT_DATE_FORMAT)
   );
@@ -67,6 +69,9 @@ export default function QuizContent({
                   ? 'justify-content-end'
                   : 'justify-content-between'
               }`}
+              style={{
+                padding: '0 50px',
+              }}
             >
               {currentQuestionIndex > 0 && (
                 <button
@@ -111,7 +116,14 @@ export default function QuizContent({
         <p className='m-0 p-0' style={{ color: '#6E7173' }}>
           Quiz saved at {formattedSavedAt}
         </p>
-        <button className='btn wd-modules-btn' onClick={handleSubmit}>
+        <button
+          className={`btn ${
+            answers.every((answer) => answer.every((ans) => ans !== ''))
+              ? 'btn-danger'
+              : 'wd-modules-btn'
+          }`}
+          onClick={handleSubmit}
+        >
           Submit Quiz
         </button>
       </div>
