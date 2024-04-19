@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import { Question } from '.';
-import { quizzes } from '../../../Database';
 import QuestionBox from './QuestionBox';
-import { MdArrowRight, MdOutlineEdit } from 'react-icons/md';
+import { MdArrowRight, MdArrowLeft, MdOutlineEdit } from 'react-icons/md';
 import './QuizContent.css';
+import { useState } from 'react';
 
 /**
  * from quiz instructions to keep editing this quiz button
@@ -16,6 +16,11 @@ export interface QuizContentProps {
   handleChangeQuestion: React.Dispatch<React.SetStateAction<number>>;
   handleEdit: () => void;
   handleSubmit: () => void;
+  handleSaveAnswer: (
+    answer: string,
+    answerIndex: number,
+    questionIndex: number
+  ) => void;
 }
 
 export const UPDATED_AT_DATE_FORMAT = 'h:mmaaa';
@@ -27,9 +32,21 @@ export default function QuizContent({
   handleChangeQuestion,
   handleEdit,
   handleSubmit,
+  handleSaveAnswer,
 }: QuizContentProps) {
-  // TODO: update this to pull the updated at date from BE
-  const formattedUpdatedAt = format(new Date(), UPDATED_AT_DATE_FORMAT);
+  const [formattedSavedAt, setFormattedSavedAt] = useState(
+    format(new Date(), UPDATED_AT_DATE_FORMAT)
+  );
+
+  const handleAnswerSelect = (
+    answer: string,
+    answerIndex: number,
+    questionIndex: number
+  ) => {
+    handleSaveAnswer(answer, answerIndex, questionIndex);
+    setFormattedSavedAt(format(new Date(), UPDATED_AT_DATE_FORMAT));
+  };
+
   return (
     <div className='d-flex flex-column gap-1'>
       <h3 className='m-0 p-0 fw-bold'>Quiz Instructions</h3>
@@ -38,22 +55,49 @@ export default function QuizContent({
         {oneQuestionAtATime && (
           <>
             <QuestionBox
-              question={quizzes[0].questions[currentQuestionIndex] as Question}
+              question={questions[currentQuestionIndex]}
+              questionIndex={currentQuestionIndex}
+              handleAnswerSelect={(answer: string, answerIndex: number) =>
+                handleAnswerSelect(answer, answerIndex, currentQuestionIndex)
+              }
             />
-            {currentQuestionIndex < questions.length - 1 && (
-              <button
-                className='btn wd-modules-btn next-question-btn'
-                onClick={() => handleChangeQuestion((index) => index + 1)}
-              >
-                Next <MdArrowRight style={{ fontSize: '20px' }} />
-              </button>
-            )}
+            <div
+              className={`d-flex flex-row w-100 ${
+                currentQuestionIndex === 0
+                  ? 'justify-content-end'
+                  : 'justify-content-between'
+              }`}
+            >
+              {currentQuestionIndex > 0 && (
+                <button
+                  className='btn wd-modules-btn prev-question-btn'
+                  onClick={() => handleChangeQuestion((index) => index - 1)}
+                >
+                  <MdArrowLeft style={{ fontSize: '20px' }} /> Previous
+                </button>
+              )}
+              {currentQuestionIndex < questions.length - 1 && (
+                <button
+                  className='btn btn-danger next-question-btn'
+                  onClick={() => handleChangeQuestion((index) => index + 1)}
+                >
+                  Next <MdArrowRight style={{ fontSize: '20px' }} />
+                </button>
+              )}
+            </div>
           </>
         )}
         {!oneQuestionAtATime && (
           <>
             {questions.map((question, index) => (
-              <QuestionBox key={index} question={question} />
+              <QuestionBox
+                key={index}
+                question={question}
+                questionIndex={index}
+                handleAnswerSelect={(answer: string, answerIndex: number) =>
+                  handleAnswerSelect(answer, answerIndex, index)
+                }
+              />
             ))}
           </>
         )}
@@ -65,7 +109,7 @@ export default function QuizContent({
         }}
       >
         <p className='m-0 p-0' style={{ color: '#6E7173' }}>
-          Quiz saved at {formattedUpdatedAt}
+          Quiz saved at {formattedSavedAt}
         </p>
         <button className='btn wd-modules-btn' onClick={handleSubmit}>
           Submit Quiz

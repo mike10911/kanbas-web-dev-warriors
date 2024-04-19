@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QuizHeaderPreview from './QuizPreviewHeader';
 import QuizContent from './QuizContent';
 import QuestionList from './QuestionList';
 import { quizzes } from '../../../Database';
-
-export type Answer = {
-  answer: string;
-  correct: boolean;
-};
+import { useParams } from 'react-router';
+import { QuizPreviewProvider } from '../context/QuizPreviewContext';
 
 export enum QuestionType {
   MULTIPLE_CHOICE = 'Multiple Choice',
@@ -21,7 +18,8 @@ export type Question = {
   type: QuestionType;
   points: number;
   description: string;
-  answers: Answer[];
+  answers: string[];
+  options: string[];
 };
 
 export enum QuizType {
@@ -78,30 +76,100 @@ banner to say that it's a preview
 - at bottom, show list of all questions where the links are all clickable and the current question link is bolded
 */
 const QuizPreview = () => {
-  const quizTitle = 'Q1 - HTML';
+  const { quizId } = useParams();
+
+  const [quiz, setQuiz] = useState<Quiz | null>(null);
+  // TODO: the datatype of this array might need to change
+  const [answers, setAnswers] = useState<string[][]>([]);
+  const [taggedQuestionIndex, setTaggedQuestionIndex] = useState<number | null>(
+    null
+  );
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  useEffect(() => {
+    // fetch quiz from BE
+    const fetchQuiz = async () => {
+      // TODO: replace with actual fetch call
+      setQuiz(JSON.parse(JSON.stringify(quizzes[0])));
+      setAnswers(
+        quizzes[0].questions.map((question) =>
+          question.type === QuestionType.FILL_IN_THE_BLANK
+            ? question.options.map(() => '')
+            : ['']
+        )
+      );
+    };
+
+    fetchQuiz();
+  }, []);
 
   const handleChangeQuestion = (index: number) =>
     setCurrentQuestionIndex(index);
 
+  const handleEdit = () => {
+    // TODO: implement this, wire in to change from quiz preview to editor
+    console.log('go back to quiz editor page');
+  };
+
+  const handleSubmit = () => {
+    console.log(
+      'grade teh quiz score for the preview test run but dont save it anywhere?'
+    );
+    console.log('submitted answers', answers);
+  };
+
+  const handleSaveAnswer = (
+    answer: string,
+    answerIndex: number,
+    questionIndex: number
+  ) => {
+    console.log(
+      'save the progress of the quiz after each answer change in browser state'
+    );
+    setAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[questionIndex][answerIndex] = answer;
+      return newAnswers;
+    });
+  };
+
+  const updateTaggedQuestion = (questionIndex: number) =>
+    taggedQuestionIndex === questionIndex
+      ? setTaggedQuestionIndex(null)
+      : setTaggedQuestionIndex(questionIndex);
+
   return (
-    <div className='d-flex flex-column gap-1'>
-      <QuizHeaderPreview title={quizTitle} startedAt={new Date()} />
-      <QuizContent
-        oneQuestionAtATime={true}
-        currentQuestionIndex={currentQuestionIndex}
-        questions={quizzes[0].questions as Question[]}
-        handleChangeQuestion={setCurrentQuestionIndex}
-        // TODO: wire in to change from quiz preview to editor
-        handleEdit={() => {}}
-        handleSubmit={() => {}}
-      />
-      <QuestionList
-        questions={quizzes[0].questions as Question[]}
-        currentQuestionIndex={currentQuestionIndex}
-        handleChangeQuestion={handleChangeQuestion}
-      />
-    </div>
+    <QuizPreviewProvider
+      value={{
+        answers,
+        taggedQuestionIndex,
+        updateTaggedQuestion,
+      }}
+    >
+      <div className='d-flex flex-column gap-1 mb-lg-4'>
+        {quiz && (
+          <div className='d-flex flex-xl-row flex-column gap-5'>
+            <div className='d-flex flex-column w-100'>
+              <QuizHeaderPreview title={quiz?.title} startedAt={new Date()} />
+              <QuizContent
+                oneQuestionAtATime={quiz.oneQuestionAtATime}
+                currentQuestionIndex={currentQuestionIndex}
+                questions={quiz.questions}
+                handleChangeQuestion={setCurrentQuestionIndex}
+                handleEdit={handleEdit}
+                handleSubmit={handleSubmit}
+                handleSaveAnswer={handleSaveAnswer}
+              />
+            </div>
+            <QuestionList
+              questions={quiz.questions}
+              currentQuestionIndex={currentQuestionIndex}
+              handleChangeQuestion={handleChangeQuestion}
+            />
+          </div>
+        )}
+      </div>
+    </QuizPreviewProvider>
   );
 };
 
