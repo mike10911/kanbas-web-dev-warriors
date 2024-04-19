@@ -26,15 +26,12 @@
   color: red;
 }
 
-.question-list-container li:hover {
+.question-list-item:hover {
   cursor: pointer;
 }
 
 .question-list-tag {
   font-size: 16px;
   font-weight: normal;
-}
-
-.question-list-tag:hover {
-  cursor: pointer;
+  color: #ebbc4e;
 }

@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 
 export interface QuizPreviewContextType {
   answers: string[][];
-  taggedQuestionIndex: number | null;
+  taggedQuestions: number[];
   updateTaggedQuestion: (questionIndex: number) => void;
 }
 

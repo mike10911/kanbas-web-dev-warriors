@@ -32,7 +32,7 @@ export default function QuestionBox({
   questionIndex,
   handleAnswerSelect,
 }: QuestionBoxProps) {
-  const { taggedQuestionIndex, updateTaggedQuestion } = useQuizPreview();
+  const { taggedQuestions, updateTaggedQuestion } = useQuizPreview();
   const descriptionSanitized = DOMPurify.sanitize(question.description);
   // const descriptionSanitized = DOMPurify.sanitize(testDesc);
 
@@ -41,7 +41,7 @@ export default function QuestionBox({
   return (
     <div className='question-box-grid'>
       <div className='d-flex justify-content-center'>
-        {taggedQuestionIndex === questionIndex ? (
+        {taggedQuestions.includes(questionIndex) ? (
           <PiTagSimpleFill
             className='question-box-tag'
             style={{ color: '#EBBC4E' }}

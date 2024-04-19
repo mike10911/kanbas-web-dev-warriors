@@ -81,9 +81,7 @@ const QuizPreview = () => {
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   // TODO: the datatype of this array might need to change
   const [answers, setAnswers] = useState<string[][]>([]);
-  const [taggedQuestionIndex, setTaggedQuestionIndex] = useState<number | null>(
-    null
-  );
+  const [taggedQuestions, setTaggedQuestions] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   useEffect(() => {
@@ -134,15 +132,15 @@ const QuizPreview = () => {
   };
 
   const updateTaggedQuestion = (questionIndex: number) =>
-    taggedQuestionIndex === questionIndex
-      ? setTaggedQuestionIndex(null)
-      : setTaggedQuestionIndex(questionIndex);
+    taggedQuestions.includes(questionIndex)
+      ? setTaggedQuestions((prev) => prev.filter((q) => q !== questionIndex))
+      : setTaggedQuestions((prev) => [...prev, questionIndex]);
 
   return (
     <QuizPreviewProvider
       value={{
         answers,
-        taggedQuestionIndex,
+        taggedQuestions,
         updateTaggedQuestion,
       }}
     >

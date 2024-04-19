@@ -15,7 +15,7 @@ export default function QuestionList({
   currentQuestionIndex,
   handleChangeQuestion,
 }: QuestionListProps) {
-  const { taggedQuestionIndex, updateTaggedQuestion } = useQuizPreview();
+  const { taggedQuestions } = useQuizPreview();
 
   return (
     <div
@@ -32,18 +32,11 @@ export default function QuestionList({
             key={index}
             className={index === currentQuestionIndex ? 'fw-bold' : ''}
           >
-            {taggedQuestionIndex === index ? (
-              <PiTagSimpleFill
-                className='question-list-tag'
-                style={{ color: '#EBBC4E' }}
-                onClick={() => updateTaggedQuestion(index)}
-              />
-            ) : (
-              <PiTagSimple
-                className='question-list-tag'
-                onClick={() => updateTaggedQuestion(index)}
-              />
-            )}
+            <div style={{ width: '20px' }}>
+              {taggedQuestions.includes(index) && (
+                <PiTagSimpleFill className='question-list-tag' />
+              )}
+            </div>
             <div
               className='question-list-item'
               onClick={() => handleChangeQuestion(index)}
