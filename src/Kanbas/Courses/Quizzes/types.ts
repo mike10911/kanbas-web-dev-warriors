@@ -12,3 +12,8 @@ export type Question = {
   options: string[];
   answers: string[];
 };
+
+export enum TrueFalseAnswer {
+  true = "True",
+  false = "False",
+}

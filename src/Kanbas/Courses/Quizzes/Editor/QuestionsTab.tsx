@@ -10,10 +10,12 @@ function QuestionsTab() {
   const [published, setPublished] = useState(false);
   const [notifyUsers, setNotifyUsers] = useState(false);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [initialQuestions, setInitialQuestions] = useState<Question[]>([]);
 
-  // TODO: PULL QUESTIONS FROM DB
+  // TODO: PULL QUESTIONS FROM DB ?
   useEffect(() => {
     setQuestions([]);
+    setInitialQuestions([]);
   }, []);
 
   const addNewQuestion = () => {
@@ -32,7 +34,6 @@ function QuestionsTab() {
     const updatedQuestions: Question[] = [...questions];
     updatedQuestions[index] = question;
     setQuestions(updatedQuestions);
-    console.log(questions);
   };
 
   const handleSave = () => {
@@ -41,9 +42,17 @@ function QuestionsTab() {
     // put all questions
   };
 
+  const handleCancel = () => {
+    setQuestions(JSON.parse(JSON.stringify(initialQuestions)));
+  };
+
+  const handleSaveAndPublish = () => {
+    handleSave();
+    // TODO: ADD PUBLISH QUIZ
+  };
+
   return (
     <div className="flex-fill">
-      Quiz Questions Editor
       <div className="question-editor-header">
         <div className="points-text">Points {points} </div>
         <div>
@@ -101,8 +110,12 @@ function QuestionsTab() {
           Notify users this quiz has changed
         </label>
         <div className="d-flex flex-row">
-          <button className="btn wd-modules-btn">Cancel</button>
-          <button className="btn wd-modules-btn">Save & Publish</button>
+          <button className="btn wd-modules-btn" onClick={handleCancel}>
+            Cancel
+          </button>
+          <button className="btn wd-modules-btn" onClick={handleSaveAndPublish}>
+            Save & Publish
+          </button>
           <button className="btn btn-danger" onClick={handleSave}>
             Save
           </button>
