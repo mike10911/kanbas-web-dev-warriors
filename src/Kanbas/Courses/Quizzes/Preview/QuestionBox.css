@@ -3,19 +3,19 @@
   flex-direction: column;
   align-items: end;
   gap: 2.5rem;
-  max-width: 600px;
+  max-width: 650px;
+}
+
+.question-box-grid {
+  display: grid;
+  grid-template-columns: 50px minmax(auto, 600px) 50px;
+  width: 100%;
 }
 
 .question-box {
   border: 1px solid rgb(206, 206, 206);
-}
-
-.next-question-btn {
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.25rem;
+  max-width: 600px;
+  width: 100%;
 }
 
 .question-box-header {
@@ -47,4 +47,13 @@
 
 .question-fill-in-the-blank-answer-input input {
   width: 150px;
+}
+
+.question-box-tag {
+  margin-top: 12px;
+  font-size: 24px;
+}
+
+.question-box-tag:hover {
+  cursor: pointer;
 }

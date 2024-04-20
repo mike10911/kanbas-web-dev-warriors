@@ -35,7 +35,7 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
             <Route path='Piazza' element={<h1>Piazza</h1>} />
             <Route path='Assignments' element={<Assignments />} />
             <Route path='Quizzes' element={<Quizzes />} />
-            <Route path='Quizzes/:quizId/preview' element={<QuizPreview />} />
+            <Route path='Quizzes/:quizId/Preview' element={<QuizPreview />} />
             <Route
               path='Assignments/:assignmentId'
               element={<h1>Assignment Editor</h1>}

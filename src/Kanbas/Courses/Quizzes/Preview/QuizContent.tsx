@@ -1,35 +1,49 @@
 import { format } from 'date-fns';
 import { Question } from '.';
-import { quizzes } from '../../../Database';
 import QuestionBox from './QuestionBox';
-import { MdArrowRight, MdOutlineEdit } from 'react-icons/md';
+import { MdArrowRight, MdArrowLeft, MdOutlineEdit } from 'react-icons/md';
 import './QuizContent.css';
-
-/**
- * from quiz instructions to keep editing this quiz button
- */
+import { useState } from 'react';
+import useQuizPreview from '../hooks/useQuizPreview';
+import { Link, useParams } from 'react-router-dom';
+import { UPDATED_AT_DATE_FORMAT } from './constants';
 
 export interface QuizContentProps {
   oneQuestionAtATime: boolean;
   currentQuestionIndex: number;
   questions: Question[];
   handleChangeQuestion: React.Dispatch<React.SetStateAction<number>>;
-  handleEdit: () => void;
   handleSubmit: () => void;
+  handleSaveAnswer: (
+    answer: string,
+    answerIndex: number,
+    questionIndex: number
+  ) => void;
 }
-
-export const UPDATED_AT_DATE_FORMAT = 'h:mmaaa';
 
 export default function QuizContent({
   oneQuestionAtATime,
   currentQuestionIndex,
   questions,
   handleChangeQuestion,
-  handleEdit,
   handleSubmit,
+  handleSaveAnswer,
 }: QuizContentProps) {
-  // TODO: update this to pull the updated at date from BE
-  const formattedUpdatedAt = format(new Date(), UPDATED_AT_DATE_FORMAT);
+  const { courseId, quizId } = useParams();
+  const { answers } = useQuizPreview();
+  const [formattedSavedAt, setFormattedSavedAt] = useState(
+    format(new Date(), UPDATED_AT_DATE_FORMAT)
+  );
+
+  const handleAnswerSelect = (
+    answer: string,
+    answerIndex: number,
+    questionIndex: number
+  ) => {
+    handleSaveAnswer(answer, answerIndex, questionIndex);
+    setFormattedSavedAt(format(new Date(), UPDATED_AT_DATE_FORMAT));
+  };
+
   return (
     <div className='d-flex flex-column gap-1'>
       <h3 className='m-0 p-0 fw-bold'>Quiz Instructions</h3>
@@ -38,22 +52,52 @@ export default function QuizContent({
         {oneQuestionAtATime && (
           <>
             <QuestionBox
-              question={quizzes[0].questions[currentQuestionIndex] as Question}
+              question={questions[currentQuestionIndex]}
+              questionIndex={currentQuestionIndex}
+              handleAnswerSelect={(answer: string, answerIndex: number) =>
+                handleAnswerSelect(answer, answerIndex, currentQuestionIndex)
+              }
             />
-            {currentQuestionIndex < questions.length - 1 && (
-              <button
-                className='btn wd-modules-btn next-question-btn'
-                onClick={() => handleChangeQuestion((index) => index + 1)}
-              >
-                Next <MdArrowRight style={{ fontSize: '20px' }} />
-              </button>
-            )}
+            <div
+              className={`d-flex flex-row w-100 ${
+                currentQuestionIndex === 0
+                  ? 'justify-content-end'
+                  : 'justify-content-between'
+              }`}
+              style={{
+                padding: '0 50px',
+              }}
+            >
+              {currentQuestionIndex > 0 && (
+                <button
+                  className='btn wd-modules-btn prev-question-btn'
+                  onClick={() => handleChangeQuestion((index) => index - 1)}
+                >
+                  <MdArrowLeft style={{ fontSize: '20px' }} /> Previous
+                </button>
+              )}
+              {currentQuestionIndex < questions.length - 1 && (
+                <button
+                  className='btn btn-danger next-question-btn'
+                  onClick={() => handleChangeQuestion((index) => index + 1)}
+                >
+                  Next <MdArrowRight style={{ fontSize: '20px' }} />
+                </button>
+              )}
+            </div>
           </>
         )}
         {!oneQuestionAtATime && (
           <>
             {questions.map((question, index) => (
-              <QuestionBox key={index} question={question} />
+              <QuestionBox
+                key={index}
+                question={question}
+                questionIndex={index}
+                handleAnswerSelect={(answer: string, answerIndex: number) =>
+                  handleAnswerSelect(answer, answerIndex, index)
+                }
+              />
             ))}
           </>
         )}
@@ -65,23 +109,34 @@ export default function QuizContent({
         }}
       >
         <p className='m-0 p-0' style={{ color: '#6E7173' }}>
-          Quiz saved at {formattedUpdatedAt}
+          Quiz saved at {formattedSavedAt}
         </p>
-        <button className='btn wd-modules-btn' onClick={handleSubmit}>
-          Submit Quiz
-        </button>
+        <div className='disabled-btn'>
+          <button
+            className={`btn ${
+              answers.every((answer) => answer.every((ans) => ans !== ''))
+                ? 'btn-danger'
+                : 'submit-btn'
+            }`}
+            disabled
+          >
+            Submit Quiz
+          </button>
+        </div>
       </div>
-      <button
-        className='btn wd-modules-btn d-flex justify-content-start gap-1 mt-4'
-        onClick={handleEdit}
+      <Link
+        to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}
+        className='w-100 mt-4 text-decoration-none'
       >
-        <MdOutlineEdit
-          style={{
-            transform: 'rotateY(180deg)',
-          }}
-        />
-        Keep Editing This Quiz
-      </button>
+        <button className='btn wd-modules-btn d-flex justify-content-start gap-1 w-100'>
+          <MdOutlineEdit
+            style={{
+              transform: 'rotateY(180deg)',
+            }}
+          />
+          Keep Editing This Quiz
+        </button>
+      </Link>
     </div>
   );
 }
