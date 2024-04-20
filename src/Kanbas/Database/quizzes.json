@@ -1,9 +1,11 @@
 [
   {
     "_id": "1",
+    "courseId": "1",
     "isPublished": true,
     "questions": [
       {
+        "_id": "1",
         "title": "Question 1",
         "type": "Multiple Choice",
         "points": 5,
@@ -12,6 +14,7 @@
         "answers": ["Garnets"]
       },
       {
+        "_id": "2",
         "title": "Question 2",
         "type": "True/False",
         "points": 5,
@@ -20,6 +23,7 @@
         "answers": ["True"]
       },
       {
+        "_id": "3",
         "title": "Question 3",
         "type": "Multiple Choice",
         "points": 5,
@@ -28,6 +32,7 @@
         "answers": ["Countess von Backwards" ]
       },
       {
+        "_id": "4",
         "title": "Question 4",
         "type": "Multiple Choice",
         "points": 5,
@@ -36,6 +41,7 @@
         "answers": ["Boeing"]
       },
       {
+        "_id": "5",
         "title": "Question 5",
         "type": "Fill in the Blank",
         "points": 5,
@@ -44,6 +50,7 @@
         "answers": ["Eagle", "Owl", "Penguin"]
       },
       {
+        "_id": "6",
         "title": "Question 6",
         "type": "Multiple Choice",
         "points": 5,
@@ -52,6 +59,7 @@
         "answers": ["Knight", "Owl", "Penguin"]
       },
       {
+        "_id": "7",
         "title": "Question 7",
         "type": "Multiple Choice",
         "points": 5,
@@ -60,6 +68,7 @@
         "answers": ["Belgium"]
       },
       {
+        "_id": "80",
         "title": "Question 8",
         "type": "Fill in the Blank",
         "points": 5,
@@ -87,9 +96,11 @@
   },
   {
     "_id": "2",
+    "courseId": "1",
     "isPublished": true,
     "questions": [
       {
+        "_id": "8",
         "title": "Question 1",
         "type": "Multiple Choice",
         "points": 10,
@@ -98,6 +109,7 @@
         "answers": ["Chick-fil-A"]
       },
       {
+        "_id": "9",
         "title": "Question 2",
         "type": "Multiple Choice",
         "points": 2,
@@ -106,6 +118,7 @@
         "answers": []
       },
       {
+        "_id": "10",
         "title": "Question 3",
         "type": "Multiple Choice",
         "points": 5,
@@ -114,6 +127,7 @@
         "answers": ["Green"]
       },
       {
+        "_id": "11",
         "title": "Question 4",
         "type": "Multiple Choice",
         "points": 15,
@@ -122,6 +136,7 @@
         "answers": ["Selfie"]
       },
       {
+        "_id": "12",
         "title": "Question 5",
         "type": "Multiple Choice",
         "points": 20,
@@ -130,6 +145,7 @@
         "answers": ["Comic-Con"]
       },
       {
+        "_id": "13",
         "title": "Question 6",
         "type": "True/False",
         "points": 2,
@@ -138,6 +154,7 @@
         "answers": ["True"]
       },
       {
+        "_id": "14",
         "title": "Question 7",
         "type": "Multiple Choice",
         "points": 9,
@@ -165,6 +182,7 @@
   },
   {
     "_id": "3",
+    "courseId": "2",
     "isPublished": true,
     "questions": [],
     "title": "Quiz 3",
