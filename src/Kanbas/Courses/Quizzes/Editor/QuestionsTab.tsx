@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./QuestionsTab.css";
-import { FaBan, FaCheck, FaPlus } from "react-icons/fa";
+import { FaBan, FaCheck, FaPlus, FaTrash } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Question, QuestionType } from "../types";
 import QuestionEditor from "./QuestionEditor";
@@ -33,6 +33,11 @@ function QuestionsTab() {
   const updateQuestion = (index: number, question: Question) => {
     const updatedQuestions: Question[] = [...questions];
     updatedQuestions[index] = question;
+    setQuestions(updatedQuestions);
+  };
+
+  const deleteQuestion = (index: number) => {
+    const updatedQuestions = questions.filter((_, idx) => idx !== index);
     setQuestions(updatedQuestions);
   };
 
@@ -77,6 +82,7 @@ function QuestionsTab() {
             index={idx}
             question={question}
             updateQuestion={updateQuestion}
+            deleteQuestion={deleteQuestion}
           />
         ))}
       </div>

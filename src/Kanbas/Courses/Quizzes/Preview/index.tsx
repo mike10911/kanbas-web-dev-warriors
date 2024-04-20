@@ -16,12 +16,11 @@ export enum QuestionType {
 }
 
 export type Question = {
-  _id: number;
   title: string;
   type: QuestionType;
   points: number;
   description: string;
-  answers: Answer[];
+  answers: string[];
   options: string[];
 };
 
@@ -40,7 +39,7 @@ export enum AssignmentGroup {
 }
 
 export type Quiz = {
-  _id: number;
+  _id: string;
   isPublished: boolean;
   questions: Question[];
   title: string;

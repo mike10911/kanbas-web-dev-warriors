@@ -10,12 +10,14 @@ export interface QuizEditableQuestionProps {
   question: Question;
   index: number;
   updateQuestion: (index: number, question: Question) => void;
+  deleteQuestion: (index: number) => void;
 }
 
 function QuestionEditor({
   question,
   index,
   updateQuestion,
+  deleteQuestion,
 }: QuizEditableQuestionProps) {
   const [currQuestion, setCurrQuestion] = useState<Question>(
     JSON.parse(JSON.stringify(question))
@@ -135,23 +137,31 @@ function QuestionEditor({
         )}
       </div>
       <div className="question-buttons-container">
-        <button className="btn wd-modules-btn" onClick={handleCancel}>
-          {" "}
-          Cancel{" "}
-        </button>
-        <button className="btn btn-danger" onClick={handleSave}>
-          {" "}
-          Update Question{" "}
-        </button>
-        <div className="saved-text">
-          {changesSaved ? (
-            <>
-              <FaCheck style={{ color: "green" }} /> All Changes Saved{" "}
-            </>
-          ) : (
-            "Changes Not Saved"
-          )}
+        <div className="left-buttons">
+          <button className="btn wd-modules-btn" onClick={handleCancel}>
+            {" "}
+            Cancel{" "}
+          </button>
+          <button className="btn btn-danger" onClick={handleSave}>
+            {" "}
+            Update Question{" "}
+          </button>
+          <div className="saved-text">
+            {changesSaved ? (
+              <>
+                <FaCheck style={{ color: "green" }} /> All Changes Saved{" "}
+              </>
+            ) : (
+              "Changes Not Saved"
+            )}
+          </div>
         </div>
+        <button
+          className="btn btn-danger"
+          onClick={() => deleteQuestion(index)}
+        >
+          Delete Question
+        </button>
       </div>
     </div>
   );

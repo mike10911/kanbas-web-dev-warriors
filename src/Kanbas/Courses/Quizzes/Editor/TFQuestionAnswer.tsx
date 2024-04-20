@@ -25,7 +25,7 @@ function TFQuestionAnswer({
             key={`input-${index}`}
             type="radio"
             name="option-select"
-            defaultChecked={question.answers.includes(TrueFalseAnswer.true)}
+            checked={question.answers.includes(TrueFalseAnswer.true)}
             onChange={() => handleAnswerSelect(TrueFalseAnswer.true)}
           />{" "}
           True
@@ -35,7 +35,7 @@ function TFQuestionAnswer({
             key={`input-${index}`}
             type="radio"
             name="option-select"
-            defaultChecked={question.answers.includes(TrueFalseAnswer.false)}
+            checked={question.answers.includes(TrueFalseAnswer.false)}
             onChange={() => handleAnswerSelect(TrueFalseAnswer.false)}
           />{" "}
           False

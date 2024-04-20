@@ -1,7 +1,7 @@
-import { Answer, QuestionType } from '.';
+import { Answer, QuestionType } from ".";
 
 export interface AnswersProps {
-  answers: Answer[];
+  answers: string[];
   variant?: QuestionType;
 }
 export default function Answers({
@@ -14,16 +14,16 @@ export default function Answers({
       return (
         <div>
           {answers.map((answer, index) => (
-            <div className='question-multiple-choice-answer-input' key={index}>
+            <div className="question-multiple-choice-answer-input" key={index}>
               <input
-                className='focus-ring'
-                id={answer.answer}
-                type='radio'
-                name='answer'
-                value={answer.answer}
+                className="focus-ring"
+                id={answer}
+                type="radio"
+                name="answer"
+                value={answer}
               />
-              <label className='w-100' htmlFor={answer.answer}>
-                {answer.answer}
+              <label className="w-100" htmlFor={answer}>
+                {answer}
               </label>
             </div>
           ))}
@@ -31,14 +31,14 @@ export default function Answers({
       );
     case QuestionType.FILL_IN_THE_BLANK:
       return (
-        <div className='d-flex flex-column gap-2'>
+        <div className="d-flex flex-column gap-2">
           {answers.map((answer, index) => (
             <div
-              className='question-fill-in-the-blank-answer-input'
+              className="question-fill-in-the-blank-answer-input"
               key={index}
             >
-              <label htmlFor={answer.answer}>{index + 1}.</label>
-              <input className='p-2' id={answer.answer} type='text' />
+              <label htmlFor={answer}>{index + 1}.</label>
+              <input className="p-2" id={answer} type="text" />
             </div>
           ))}
         </div>
