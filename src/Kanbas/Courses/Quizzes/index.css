@@ -46,6 +46,7 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
+ 
 }
 
 .add-quiz-btn {
@@ -64,8 +65,9 @@
   align-items: center;
   border: 1px solid #ccc;
   padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  border-top: 1px solid rgb(206, 206, 206) !important;
+  border-left: 7px solid green;
 }
 
 .quiz-title {

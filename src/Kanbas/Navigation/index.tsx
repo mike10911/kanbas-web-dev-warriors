@@ -145,7 +145,7 @@ const KanbasNavigation: React.FC<KanbasNavigationProps> = ({ courses }) => {
           onClose={handleKanbasNavClose}
         />
       )}
-      <div className='d-none d-lg-flex'>
+      <div className='d-none d-lg-flex' style={{ width: '80px' }}>
         <ul className='wd-kanbas-navigation'>
           <li key='Northeastern logo'>
             <Link to='/Kanbas'>N</Link>

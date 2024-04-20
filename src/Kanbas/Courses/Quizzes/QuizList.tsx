@@ -20,6 +20,8 @@ import {
 import { Link } from "react-router-dom";
 import { formatDate } from "../Assignments";
 import axios from "axios";
+// impport quiz data from mock data json file
+import { quizzes } from "../../Database"
 const API_BASE = process.env.REACT_APP_API_BASE;
 const QUIZ_API = `${API_BASE}/api`;
 
@@ -51,101 +53,21 @@ interface Quiz {
     oneQuestionAtATime: boolean;
     webcamRequired: boolean;
     lockQuestionsAfterAnswering: boolean;
-    dueDate: Date;
-    availableDate: Date;
-    untilDate: Date;
+    dueDate: string;
+    availableDate: string;
+    untilDate: string;
 }
-//mock data
 
-// Mock data for Quiz 1
-const quiz1 = {
-    _id: "quiz1",
-    courseId: "course123",
-    title: "Math Quiz 1",
-    description: "Test your basic math skills.",
-    type: "graded",
-    points: 20,
-    assignmentGroup: "Math Quizzes",
-    shuffleAnswers: true,
-    timeLimit: 15,
-    isPublished: true,
-    multipleAttempts: false,
-    showCorrectAnswers: "after_attempt",
-    accessCode: "123456",
-    oneQuestionAtATime: true,
-    webcamRequired: false,
-    lockQuestionsAfterAnswering: true,
-    dueDate: new Date("2024-05-01T23:59:59Z"), // Date object for due date
-    availableDate: new Date("2024-04-20T00:00:00Z"), // Date object for available date
-    untilDate: new Date("2024-05-01T23:59:59Z"), // Date object for until date
-    questions: [
-        {
-            _id: "q1",
-            question_type: 1,
-            points: 10,
-            description: "What is 2 + 2?",
-            options: ["3", "4", "5", "6"],
-            correct: [1],
-        },
-        {
-            _id: "q2",
-            question_type: 2,
-            points: 10,
-            description: "Is 10 divisible by 2?",
-            options: ["True", "False"],
-            correct: [0],
-        },
-    ],
-};
 
-// Mock data for Quiz 2
-const quiz2 = {
-    _id: "quiz2",
-    courseId: "course456",
-    title: "Science Quiz",
-    description: "Test your knowledge of scientific concepts.",
-    type: "graded",
-    points: 30,
-    assignmentGroup: "Science Quizzes",
-    shuffleAnswers: true,
-    timeLimit: 20,
-    isPublished: true,
-    multipleAttempts: true,
-    showCorrectAnswers: "after_due_date",
-    accessCode: "987654",
-    oneQuestionAtATime: false,
-    webcamRequired: true,
-    lockQuestionsAfterAnswering: false,
-    dueDate: new Date("2024-05-01T23:59:59Z"), // Date object for due date
-    availableDate: new Date("2024-04-20T00:00:00Z"), // Date object for available date
-    untilDate: new Date("2024-05-01T23:59:59Z"), // Date object for until date
-    questions: [
-        {
-            _id: "q3",
-            question_type: 1,
-            points: 15,
-            description: "What is the boiling point of water?",
-            answers: ["50°C", "75°C", "100°C", "150°C"],
-            correct: [2],
-        },
-        {
-            _id: "q4",
-            question_type: 2,
-            points: 15,
-            description: "Is the sun a star?",
-            answers: ["Yes", "No"],
-            correct: [0],
-        },
-    ],
-};
-
-// Array of quizzes
-const quizzes = [quiz1, quiz2];
-
-async function findCourseQuizzes(courseId: string): Promise<Quiz[]> {
+export async function findCourseQuizzes(courseId: string): Promise<Quiz[]> {
   const response = await axios.get(`${QUIZ_API}/${courseId}/quizzes`);
   return response.data;
-}
+};
+export const createQuiz = async (courseId: any, quiz: any) => {
+  const response = await axios.post(`${QUIZ_API}/${courseId}/quizzes`, quiz);
+  return response.data;
+};
+
 
 
 function QuizList() {
@@ -154,11 +76,34 @@ function QuizList() {
     // const [error, setError] = useState<string | null>(null);
     // const { courseId } = useParams();
 
-    // const handleAddQuiz = () => {
+    
 
+    // const  handleAddQuiz = () => {
+    //     // add quiz
+    //     const newQuiz = {
+    //         courseId: '',
+    //         isPublished: false,
+    //         questions: [],
+    //         title: "New Quiz",
+    //         description: "This is a new quiz",
+    //         type: "Graded Quiz",
+    //         points: 10,
+    //         assignmentGroup: "Quizzes",
+    //         shuffleAnswers: false,
+    //         timeLimit: 0,
+    //         multipleAttempts: false,
+    //         showCorrectAnswers: "",
+    //         accessCode: "",
+    //         oneQuestionAtATime: false,
+    //         webcamRequired: false,
+    //         lockQuestionsAfterAnswering: false,
+    //         dueDate: "2022-12-31T23:59:59.999Z",
+    //         availableDate: "2022-12-31T23:59:59.999Z",
+    //         untilDate: "2022-12-31T23:59:59.999Z",
+    //     };
+    //     createQuiz(courseId, newQuiz);
+    // }
 
-
-    // };
     // useEffect(() => {
     //     const fetchQuizzes = async () => {
     //         try {
@@ -176,17 +121,20 @@ function QuizList() {
     // }, [courseId]);
     function getAvailabilityStatus(quiz: Quiz): string {
       const now = new Date();
-      if (now < quiz.availableDate) {
+      const availableDate = new Date(quiz.availableDate);
+      const untilDate = new Date(quiz.untilDate);
+      if (now < availableDate) {
           return "Not available yet";
-      } else if (now > quiz.untilDate) {
+      } else if (now > untilDate) {
           return "Expired";
       } else {
           return "Available";
       }
   }
+  
 
     return (
-        <div>
+        <div className='flex-fill' >
             <h1>Quiz List</h1>
             <button className="add-quiz-btn">+ Quiz</button>
             <div className="quiz-list-container">
@@ -209,10 +157,10 @@ function QuizList() {
                                         {quiz.title}
                                     </div>
                                     <div className="quiz-details">
-                                        {/* <span className="availability-status">
+                                        <span className="availability-status">
                                 {getAvailabilityStatus(quiz)}
-                            </span> | */}
-                                        Due {formatDate(quiz.dueDate)} | Points:{" "}
+                            </span> |
+                                        Due {formatDate(new Date(quiz.dueDate))} | Points:{" "}
                                         {quiz.points} | {quiz.questions.length}{" "}
                                         Questions
                                     </div>
@@ -223,7 +171,7 @@ function QuizList() {
                                     quiz.isPublished ? "published" : "unpublished"
                                 }`}
                             >
-                                {quiz.isPublished ? "✅" : "🚫"}
+                                {quiz.isPublished ?  <FaCheckCircle className='text-success' /> : "🚫"}
                             </span>
                             <div
                                 onClick={(e) => e.stopPropagation()}

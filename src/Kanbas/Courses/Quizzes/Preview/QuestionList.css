@@ -1,0 +1,22 @@
+.question-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-left: 2rem;
+  padding: 0;
+}
+
+.question-list-container li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: red;
+}
+
+.question-list-container li:hover {
+  cursor: pointer;
+}
