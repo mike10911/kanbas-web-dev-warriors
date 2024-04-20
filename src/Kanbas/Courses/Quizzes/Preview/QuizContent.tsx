@@ -5,6 +5,7 @@ import { MdArrowRight, MdArrowLeft, MdOutlineEdit } from 'react-icons/md';
 import './QuizContent.css';
 import { useState } from 'react';
 import useQuizPreview from '../hooks/useQuizPreview';
+import { Link, useParams } from 'react-router-dom';
 
 /**
  * from quiz instructions to keep editing this quiz button
@@ -15,7 +16,6 @@ export interface QuizContentProps {
   currentQuestionIndex: number;
   questions: Question[];
   handleChangeQuestion: React.Dispatch<React.SetStateAction<number>>;
-  handleEdit: () => void;
   handleSubmit: () => void;
   handleSaveAnswer: (
     answer: string,
@@ -31,10 +31,10 @@ export default function QuizContent({
   currentQuestionIndex,
   questions,
   handleChangeQuestion,
-  handleEdit,
   handleSubmit,
   handleSaveAnswer,
 }: QuizContentProps) {
+  const { courseId, quizId } = useParams();
   const { answers } = useQuizPreview();
   const [formattedSavedAt, setFormattedSavedAt] = useState(
     format(new Date(), UPDATED_AT_DATE_FORMAT)
@@ -116,28 +116,32 @@ export default function QuizContent({
         <p className='m-0 p-0' style={{ color: '#6E7173' }}>
           Quiz saved at {formattedSavedAt}
         </p>
-        <button
-          className={`btn ${
-            answers.every((answer) => answer.every((ans) => ans !== ''))
-              ? 'btn-danger'
-              : 'wd-modules-btn'
-          }`}
-          onClick={handleSubmit}
-        >
-          Submit Quiz
-        </button>
+        <div className='disabled-btn'>
+          <button
+            className={`btn ${
+              answers.every((answer) => answer.every((ans) => ans !== ''))
+                ? 'btn-danger'
+                : 'submit-btn'
+            }`}
+            disabled
+          >
+            Submit Quiz
+          </button>
+        </div>
       </div>
-      <button
-        className='btn wd-modules-btn d-flex justify-content-start gap-1 mt-4'
-        onClick={handleEdit}
+      <Link
+        to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}
+        className='w-100 mt-4 text-decoration-none'
       >
-        <MdOutlineEdit
-          style={{
-            transform: 'rotateY(180deg)',
-          }}
-        />
-        Keep Editing This Quiz
-      </button>
+        <button className='btn wd-modules-btn d-flex justify-content-start gap-1 w-100'>
+          <MdOutlineEdit
+            style={{
+              transform: 'rotateY(180deg)',
+            }}
+          />
+          Keep Editing This Quiz
+        </button>
+      </Link>
     </div>
   );
 }

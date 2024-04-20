@@ -3,8 +3,10 @@ import QuizHeaderPreview from './QuizPreviewHeader';
 import QuizContent from './QuizContent';
 import QuestionList from './QuestionList';
 import { quizzes } from '../../../Database';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { QuizPreviewProvider } from '../context/QuizPreviewContext';
+import * as client from './client';
+import StatusBanner from './StatusBanner';
 
 export enum QuestionType {
   MULTIPLE_CHOICE = 'Multiple Choice',
@@ -83,32 +85,38 @@ const QuizPreview = () => {
   const [answers, setAnswers] = useState<string[][]>([]);
   const [taggedQuestions, setTaggedQuestions] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [error, setError] = useState<string | null>(null);
   const [quizResults, setQuizResults] = useState<boolean[]>([]);
 
   useEffect(() => {
     // fetch quiz from BE
     const fetchQuiz = async () => {
       // TODO: replace with actual fetch call
-      setQuiz(JSON.parse(JSON.stringify(quizzes[1])));
-      setAnswers(
-        quizzes[1].questions.map((question) =>
-          question.type === QuestionType.FILL_IN_THE_BLANK
-            ? question.options.map(() => '')
-            : ['']
-        )
-      );
+      if (!quizId) {
+        return;
+      }
+      try {
+        setError('');
+        const res = await client.findQuizById(quizId);
+        console.log('res', res);
+        setQuiz(res);
+        setAnswers(
+          res.questions.map((question) =>
+            question.type === QuestionType.FILL_IN_THE_BLANK
+              ? question.options.map(() => '')
+              : ['']
+          )
+        );
+      } catch (e: any) {
+        setError(e.message);
+      }
     };
 
     fetchQuiz();
-  }, []);
+  }, [quizId]);
 
   const handleChangeQuestion = (index: number) =>
     setCurrentQuestionIndex(index);
-
-  const handleEdit = () => {
-    // TODO: implement this, wire in to change from quiz preview to editor
-    console.log('go back to quiz editor page');
-  };
 
   const handleSubmit = () => {
     console.log(
@@ -154,7 +162,7 @@ const QuizPreview = () => {
       }}
     >
       <div className='d-flex flex-column gap-1 mb-lg-4'>
-        {quiz && (
+        {quiz && !error && (
           <div className='d-flex flex-xl-row flex-column gap-5'>
             <div className='d-flex flex-column w-100'>
               <QuizHeaderPreview title={quiz?.title} startedAt={new Date()} />
@@ -163,7 +171,6 @@ const QuizPreview = () => {
                 currentQuestionIndex={currentQuestionIndex}
                 questions={quiz.questions}
                 handleChangeQuestion={setCurrentQuestionIndex}
-                handleEdit={handleEdit}
                 handleSubmit={handleSubmit}
                 handleSaveAnswer={handleSaveAnswer}
               />
@@ -175,6 +182,7 @@ const QuizPreview = () => {
             />
           </div>
         )}
+        {error && <StatusBanner message={error} />}
       </div>
     </QuizPreviewProvider>
   );
