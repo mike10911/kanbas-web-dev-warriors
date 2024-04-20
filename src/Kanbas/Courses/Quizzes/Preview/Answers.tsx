@@ -1,5 +1,5 @@
-import { QuestionType } from '.';
 import useQuizPreview from '../hooks/useQuizPreview';
+import { QuestionType } from './constants';
 
 export interface AnswersProps {
   options: string[];
@@ -7,6 +7,7 @@ export interface AnswersProps {
   variant?: QuestionType;
   handleAnswerSelect: (answer: string, answerIndex: number) => void;
 }
+
 export default function Answers({
   options,
   questionIndex,

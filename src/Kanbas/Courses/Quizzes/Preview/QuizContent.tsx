@@ -6,10 +6,7 @@ import './QuizContent.css';
 import { useState } from 'react';
 import useQuizPreview from '../hooks/useQuizPreview';
 import { Link, useParams } from 'react-router-dom';
-
-/**
- * from quiz instructions to keep editing this quiz button
- */
+import { UPDATED_AT_DATE_FORMAT } from './constants';
 
 export interface QuizContentProps {
   oneQuestionAtATime: boolean;
@@ -23,8 +20,6 @@ export interface QuizContentProps {
     questionIndex: number
   ) => void;
 }
-
-export const UPDATED_AT_DATE_FORMAT = 'h:mmaaa';
 
 export default function QuizContent({
   oneQuestionAtATime,

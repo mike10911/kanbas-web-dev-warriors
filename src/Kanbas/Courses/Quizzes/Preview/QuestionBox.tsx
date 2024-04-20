@@ -1,15 +1,3 @@
-/**
- * the question box with all the question details and stuff
- * <BiSolidTag />
- * <BiTag />
- * 
- * 
- * use these ones:
-<PiTagSimple />
-<PiTagSimpleFill />
-
-
- */
 import { PiTagSimple, PiTagSimpleFill } from 'react-icons/pi';
 import { Question } from '.';
 import * as DOMPurify from 'dompurify';
@@ -24,9 +12,6 @@ export interface QuestionBoxProps {
   handleAnswerSelect: (answer: string, answerIndex: number) => void;
 }
 
-const testDesc =
-  '<p>This is a test <strong>question</strong> <s><u>description</u></s> with different types of editor styling.<em> This is Italics </em><strong><em>woah....</em></strong> back to normal!</p><p><br></p><p>Line break goes crazy!</p>';
-
 export default function QuestionBox({
   question,
   questionIndex,
@@ -34,7 +19,6 @@ export default function QuestionBox({
 }: QuestionBoxProps) {
   const { taggedQuestions, updateTaggedQuestion } = useQuizPreview();
   const descriptionSanitized = DOMPurify.sanitize(question.description);
-  // const descriptionSanitized = DOMPurify.sanitize(testDesc);
 
   const handleTagClick = () => updateTaggedQuestion(questionIndex);
 
@@ -61,7 +45,7 @@ export default function QuestionBox({
           </div>
         </div>
         <div className='d-flex flex-column mt-1 pt-4 pb-3 px-3'>
-          {parse(descriptionSanitized)}
+          <p>{parse(descriptionSanitized)}</p>
           <Answers
             options={question.options}
             variant={question.type}
