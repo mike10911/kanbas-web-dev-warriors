@@ -31,8 +31,8 @@ interface Question {
     type: string;
     points: number;
     description: string;
-    options: (string | number)[];
-    answers: (string | number)[];
+    options: string[];
+    answers: string[];
 }
 
 interface Quiz {
