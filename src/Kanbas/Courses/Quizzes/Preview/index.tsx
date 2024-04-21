@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
-import QuizHeaderPreview from './QuizPreviewHeader';
-import QuizContent from './QuizContent';
-import QuestionList from './QuestionList';
-import { useParams } from 'react-router';
-import { QuizPreviewProvider } from '../context/QuizPreviewContext';
-import * as client from './client';
-import StatusBanner from './StatusBanner';
-import { QuestionType, QuizType, AssignmentGroup } from './constants';
+import { useEffect, useState } from "react";
+import QuizHeaderPreview from "./QuizPreviewHeader";
+import QuizContent from "./QuizContent";
+import QuestionList from "./QuestionList";
+import { useParams } from "react-router";
+import { QuizPreviewProvider } from "../context/QuizPreviewContext";
+import * as client from "./client";
+import StatusBanner from "./StatusBanner";
+import { QuestionType, QuizType, AssignmentGroup } from "./constants";
 
 export type Question = {
-  _id: number;
   title: string;
   type: QuestionType;
   points: number;
@@ -19,7 +18,7 @@ export type Question = {
 };
 
 export type Quiz = {
-  _id: number;
+  _id: string;
   isPublished: boolean;
   questions: Question[];
   title: string;
@@ -57,17 +56,17 @@ const QuizPreview = () => {
         return;
       }
       try {
-        setError('');
+        setError("");
         const res = await client.findQuizById(quizId);
-        console.log('res', res);
+        console.log("res", res);
         setQuiz(res);
 
         // initialize answers array to have an empty string string for each question/fill in the blank
         setAnswers(
           res.questions.map((question) =>
             question.type === QuestionType.FILL_IN_THE_BLANK
-              ? question.options.map(() => '')
-              : ['']
+              ? question.options.map(() => "")
+              : [""]
           )
         );
       } catch (e: any) {
@@ -116,10 +115,10 @@ const QuizPreview = () => {
         updateTaggedQuestion,
       }}
     >
-      <div className='d-flex flex-column gap-1 mb-lg-4'>
+      <div className="d-flex flex-column gap-1 mb-lg-4">
         {quiz && !error && (
-          <div className='d-flex flex-xl-row flex-column gap-5'>
-            <div className='d-flex flex-column w-100'>
+          <div className="d-flex flex-xl-row flex-column gap-5">
+            <div className="d-flex flex-column w-100">
               <QuizHeaderPreview title={quiz?.title} startedAt={new Date()} />
               <QuizContent
                 oneQuestionAtATime={quiz.oneQuestionAtATime}

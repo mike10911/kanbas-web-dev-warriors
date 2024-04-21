@@ -1,5 +1,5 @@
-import useQuizPreview from '../hooks/useQuizPreview';
-import { QuestionType } from './constants';
+import useQuizPreview from "../hooks/useQuizPreview";
+import { QuestionType } from "./constants";
 
 export interface AnswersProps {
   options: string[];
@@ -24,19 +24,19 @@ export default function Answers({
           {options.map((option, index) => {
             return (
               <div
-                className='question-multiple-choice-answer-input'
+                className="question-multiple-choice-answer-input"
                 key={index}
               >
                 <input
-                  className='focus-ring'
+                  className="focus-ring"
                   id={option}
-                  type='radio'
+                  type="radio"
                   name={`question-${questionIndex}`}
                   checked={option === answers[questionIndex][0]}
                   value={option}
                   onChange={() => handleAnswerSelect(option, 0)}
                 />
-                <label className='w-100' htmlFor={option}>
+                <label className="w-100" htmlFor={option}>
                   {option}
                 </label>
               </div>
@@ -46,18 +46,18 @@ export default function Answers({
       );
     case QuestionType.FILL_IN_THE_BLANK:
       return (
-        <div className='d-flex flex-column gap-2'>
+        <div className="d-flex flex-column gap-2">
           {options.map((option, index) => (
             <div
-              className='question-fill-in-the-blank-answer-input'
+              className="question-fill-in-the-blank-answer-input"
               key={index}
             >
               <label htmlFor={option}>{index + 1}.</label>
               <input
-                className='p-2'
+                className="p-2"
                 id={option}
                 value={answers[questionIndex][index]}
-                type='text'
+                type="text"
                 onChange={(e) => handleAnswerSelect(e.target.value, index)}
               />
             </div>
