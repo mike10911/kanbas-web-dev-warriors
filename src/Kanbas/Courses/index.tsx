@@ -1,13 +1,15 @@
-import { Navigate, Route, Routes, useParams } from "react-router-dom";
-import CourseNavigation from "./Navigation";
-import { useState } from "react";
-import Modules from "./Modules";
-import Home from "./Home";
-import Assignments from "./Assignments";
-import Breadcrumbs from "./Breadcrumbs";
-import { Course } from "..";
-import Quizzes from "./Quizzes";
-import QuizPreview from "./Quizzes/Preview";
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
+import CourseNavigation from './Navigation';
+import { useState } from 'react';
+import Modules from './Modules';
+import Home from './Home';
+import Assignments from './Assignments';
+import Breadcrumbs from './Breadcrumbs';
+import { Course } from '..';
+import Quizzes from './Quizzes';
+import QuizPreview from './Quizzes/Preview';
+import QuizDetails from './Quizzes/Details';
+import DetailsEditor from './Quizzes/DetailsEditor';
 import QuizEditor from "./Quizzes/Editor/QuizEditor";
 import QuestionsTab from "./Quizzes/Editor/QuestionsTab";
 
@@ -31,12 +33,14 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
         {showCourseNav && <CourseNavigation courses={courses} />}
         <div className={"flex-fill my-3"}>
           <Routes>
-            <Route path="/" element={<Navigate to="Home" />} />
-            <Route path="Home" element={<Home />} />
-            <Route path="Modules" element={<Modules />} />
-            <Route path="Piazza" element={<h1>Piazza</h1>} />
-            <Route path="Assignments" element={<Assignments />} />
-            <Route path="Quizzes" element={<Quizzes />} />
+            <Route path='/' element={<Navigate to='Home' />} />
+            <Route path='Home' element={<Home />} />
+            <Route path='Modules' element={<Modules />} />
+            <Route path='Piazza' element={<h1>Piazza</h1>} />
+            <Route path='Assignments' element={<Assignments />} />
+            <Route path='Quizzes' element={<Quizzes />} />
+            <Route path='Quizzes/:quizId' element={<QuizDetails />} />
+            <Route path='Quizzes/:quizId/Editor/Details' element={<DetailsEditor/>} />
             <Route path="Quizzes/:quizId/Preview" element={<QuizPreview />} />
             <Route
               path="Quizzes/:quizId/questions"

@@ -1,11 +1,8 @@
-import { Link } from "react-router-dom";
-
+import QuizList from "./QuizList";
 function Quizzes() {
   return (
-    <div className="flex-fill d-flex gap-5">
-      {/* TODO: ROUTE TO REAL QUIZ */}
-      <Link to={`./1`}>Editor</Link>
-      Quizzes
+    <div className='flex-fill d-flex gap-5'>
+        <QuizList />
     </div>
   );
 }
