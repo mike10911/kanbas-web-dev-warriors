@@ -104,28 +104,18 @@ function QuizList() {
         navigate(`./${quizId}/editor/Details`);
     };
     const handleDeleteQuiz = async (quizId: string) => {
-        try {
-            await deleteQuiz(quizId);
-            setQuizzes((prevQuizzes) =>
-                prevQuizzes.filter((quiz) => quiz._id !== quizId)
-            );
-        } catch (error) {
-            console.error("Failed to delete quiz", error);
-            setError("Failed to delete quiz");
-        }
+        client.deleteQuiz(quizId).then(() => {
+            dispatch(deleteQuiz(quizId));
+        });
+        window.location.reload();
+      
     };
 
     const handlePublishToggle = async (quizId: string, quiz: Quiz) => {
-        const updatedQuiz = { ...quiz, published: !quiz.isPublished };
-        try {
-            await updateQuiz(updatedQuiz);
-            setQuizzes((prevQuizzes) =>
-                prevQuizzes.map((q) => (q._id === quiz._id ? updatedQuiz : q))
-            );
-        } catch (error) {
-            console.error("Failed to toggle publish status", error);
-            setError("Failed to update quiz");
-        }
+      const isPublished = quiz.isPublished;
+      client.publishQuiz(quizId, !isPublished);
+      dispatch(setPublish({ quizId, isPublished: !isPublished }));
+      window.location.reload();
     };
 
     if (loading) return <div>Loading...</div>;
@@ -208,7 +198,19 @@ function QuizList() {
                                 ) : (
                                     "🚫"
                                 )}
-                                <FaEllipsisV className="ms-2" />
+                                <FaEllipsisV className="ms-2" onClick={(e) => {
+                            e.stopPropagation();
+                            toggleContextMenu(quiz._id);
+                        }}>⋮</FaEllipsisV>
+                        {contextMenu[quiz._id] && (
+                            <div className="quiz-context-menu">
+                                <button className="rounded" onClick={() => handleEditQuiz(quiz._id)}>Edit</button>
+                                <button className="rounded" onClick={() => handleDeleteQuiz(quiz._id)}>Delete</button>
+                                <button className="rounded" onClick={() => handlePublishToggle(quiz._id, quiz)}>
+                                    {quiz.isPublished ? 'Unpublish' : 'Publish'}
+                                </button>
+                            </div>
+                        )}
                             </span>
                         </div>
                     ))

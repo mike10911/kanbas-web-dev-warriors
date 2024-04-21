@@ -32,11 +32,11 @@ const DetailsEditor = () => {
     const quiz = useSelector((state: KanbasState) => state.quizzesReducer.quiz);
 
     const handleUpdateAndPublish = () => {
-        const isPublished = quiz?.isPublished;
         client.updateQuiz(quiz);
-        client.publishQuiz(quizId, !isPublished);
-        dispatch(setPublish({ quizId, isPublished: true }));
+        client.publishQuiz(quiz._id, true);
         dispatch(updateQuiz(quiz));
+        dispatch(setPublish({ quizId: quiz._id, isPublished: true }));
+        window.location.reload();
     };
     const handleUpdateQuiz = () => {
         client.updateQuiz(quiz);

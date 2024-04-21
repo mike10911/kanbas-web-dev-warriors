@@ -90,12 +90,13 @@
   font-style: italic;
 }
 
-/* .quiz-context-menu {
+.quiz-context-menu {
   padding: 5px 10px;
   background-color: #e7e7e7;
   border-radius: 5px;
   cursor: pointer;
-} */
+  gap: 10px;
+}
 
 a {
   text-decoration: none;
