@@ -171,6 +171,7 @@ const QuizPreview = () => {
                 questions={quiz.questions}
                 currentQuestionIndex={currentQuestionIndex}
                 startDatetime={attemptStartDatetime}
+                timeLimit={quiz.timeLimit}
                 dueDate={quiz.dueDate}
                 handleChangeQuestion={handleChangeQuestion}
                 handleSubmit={handleSubmit}
