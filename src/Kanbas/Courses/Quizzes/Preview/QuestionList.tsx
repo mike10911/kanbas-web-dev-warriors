@@ -5,7 +5,7 @@ import './QuestionList.css';
 import useQuizPreview from '../hooks/useQuizPreview';
 import { useState } from 'react';
 import { addMinutes, format } from 'date-fns';
-import { QUIZ_PREVIEW_DATE_FORMAT } from './constants';
+import { DATE_FORMAT } from './constants';
 import { useTimer } from 'react-timer-hook';
 
 export interface QuestionListProps {
@@ -29,7 +29,7 @@ export default function QuestionList({
 }: QuestionListProps) {
   const { taggedQuestions } = useQuizPreview();
   const [showTime, setShowTime] = useState(true);
-  const formattedDueDate = format(dueDate, QUIZ_PREVIEW_DATE_FORMAT);
+  const formattedDueDate = format(dueDate, DATE_FORMAT);
   const { seconds, minutes } = useTimer({
     expiryTimestamp: addMinutes(startDatetime, timeLimit ?? 0),
     onExpire: () => handleSubmit(),

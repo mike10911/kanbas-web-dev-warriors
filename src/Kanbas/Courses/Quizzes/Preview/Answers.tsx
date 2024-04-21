@@ -43,7 +43,6 @@ export default function Answers({
                   className='w-100'
                   style={{
                     color: disabled ? '#6E7173' : '#000',
-                    cursor: disabled ? 'not-allowed' : 'pointer',
                   }}
                   htmlFor={option}
                 >

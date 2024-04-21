@@ -6,7 +6,7 @@ import './QuizContent.css';
 import { useState } from 'react';
 import useQuizPreview from '../hooks/useQuizPreview';
 import { Link, useParams } from 'react-router-dom';
-import { QUIZ_PREVIEW_DATE_FORMAT } from './constants';
+import { UPDATED_AT_DATE_FORMAT } from './constants';
 
 export interface QuizContentProps {
   oneQuestionAtATime: boolean;
@@ -38,7 +38,7 @@ export default function QuizContent({
   const { courseId, quizId } = useParams();
   const { answers } = useQuizPreview();
   const [formattedSavedAt, setFormattedSavedAt] = useState(
-    format(attemptStartDatetime, QUIZ_PREVIEW_DATE_FORMAT)
+    format(attemptStartDatetime, UPDATED_AT_DATE_FORMAT)
   );
   const totalScore = quizResult?.reduce((acc, curr) => acc + curr.score, 0);
   const quizMaxPoints = questions.reduce((acc, curr) => acc + curr.points, 0);
@@ -49,7 +49,7 @@ export default function QuizContent({
     questionIndex: number
   ) => {
     handleSaveAnswer(answer, answerIndex, questionIndex);
-    setFormattedSavedAt(format(new Date(), QUIZ_PREVIEW_DATE_FORMAT));
+    setFormattedSavedAt(format(new Date(), UPDATED_AT_DATE_FORMAT));
   };
 
   return (
@@ -151,15 +151,19 @@ export default function QuizContent({
         </div>
       )}
       {quizResult !== undefined && totalScore !== undefined && (
-        <div className='d-flex flex-column w-100 py-2 px-3 m-3'>
+        <div className='d-flex flex-column w-100 py-2 px-3 mt-3'>
           <p className='fs-5 align-self-end'>
             Quiz Score:{' '}
-            <strong className='fs-4'>{totalScore.toFixed(2)}</strong> out of{' '}
-            {quizMaxPoints.toFixed(2)}
+            <strong className='fs-4'>
+              {Number.isInteger(totalScore)
+                ? totalScore
+                : totalScore.toFixed(2)}
+            </strong>{' '}
+            out of {quizMaxPoints}
           </p>
-          <hr className='m-0' />
         </div>
       )}
+      <hr className='m-0' />
       <Link
         to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}
         className='w-100 mt-4 text-decoration-none'

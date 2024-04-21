@@ -143,7 +143,7 @@ const QuizPreview = () => {
         updateTaggedQuestion,
       }}
     >
-      <div className='d-flex flex-column gap-1 mb-lg-4'>
+      <div className='d-flex flex-column justify-content-center gap-1 mb-lg-4'>
         {quiz && !error && (
           <div
             className={`d-flex flex-xl-row flex-column gap-5 ${
