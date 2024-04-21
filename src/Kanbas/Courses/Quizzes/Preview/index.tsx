@@ -85,24 +85,23 @@ const QuizPreview = () => {
     setCurrentQuestionIndex(index);
 
   return (
-    // <div className='d-flex flex-column gap-1'>
-    //   <QuizHeaderPreview title={quizTitle} startedAt={new Date()} />
-    //   <QuizContent
-    //     oneQuestionAtATime={true}
-    //     currentQuestionIndex={currentQuestionIndex}
-    //     questions={quizzes[0].questions as Question[]}
-    //     handleChangeQuestion={setCurrentQuestionIndex}
-    //     // TODO: wire in to change from quiz preview to editor
-    //     handleEdit={() => {}}
-    //     handleSubmit={() => {}}
-    //   />
-    //   <QuestionList
-    //     questions={quizzes[0].questions as Question[]}
-    //     currentQuestionIndex={currentQuestionIndex}
-    //     handleChangeQuestion={handleChangeQuestion}
-    //   />
-    // </div>
-      <h1>Quiz Preview</h1>
+    <div className='d-flex flex-column gap-1'>
+      <QuizHeaderPreview title={quizTitle} startedAt={new Date()} />
+      <QuizContent
+        oneQuestionAtATime={true}
+        currentQuestionIndex={currentQuestionIndex}
+        questions={quizzes[0].questions as Question[]}
+        handleChangeQuestion={setCurrentQuestionIndex}
+        // TODO: wire in to change from quiz preview to editor
+        handleEdit={() => {}}
+        handleSubmit={() => {}}
+      />
+      <QuestionList
+        questions={quizzes[0].questions as Question[]}
+        currentQuestionIndex={currentQuestionIndex}
+        handleChangeQuestion={handleChangeQuestion}
+      />
+    </div>
   );
 };
 

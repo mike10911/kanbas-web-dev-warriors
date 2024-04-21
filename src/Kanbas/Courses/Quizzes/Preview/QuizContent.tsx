@@ -37,9 +37,9 @@ export default function QuizContent({
       <div className='question-box-container align-self-center'>
         {oneQuestionAtATime && (
           <>
-            {/* <QuestionBox
+            <QuestionBox
               question={quizzes[0].questions[currentQuestionIndex] as Question}
-            /> */}
+            />
             {currentQuestionIndex < questions.length - 1 && (
               <button
                 className='btn wd-modules-btn next-question-btn'
