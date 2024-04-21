@@ -151,7 +151,10 @@ const QuizPreview = () => {
             }`}
           >
             <div className='d-flex flex-column w-100'>
-              <QuizHeaderPreview title={quiz?.title} startedAt={new Date()} />
+              <QuizHeaderPreview
+                title={quiz?.title}
+                startedAt={attemptStartDatetime}
+              />
               <QuizContent
                 oneQuestionAtATime={quiz.oneQuestionAtATime}
                 currentQuestionIndex={currentQuestionIndex}
@@ -169,7 +172,6 @@ const QuizPreview = () => {
                 questions={quiz.questions}
                 currentQuestionIndex={currentQuestionIndex}
                 startDatetime={attemptStartDatetime}
-                timeLimit={quiz.timeLimit}
                 dueDate={quiz.dueDate}
                 handleChangeQuestion={handleChangeQuestion}
                 handleSubmit={handleSubmit}
