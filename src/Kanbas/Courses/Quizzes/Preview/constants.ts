@@ -1,4 +1,7 @@
+export const PREVIEW_BANNER_MESSAGE =
+  'This is a preview of the published version of the quiz';
 export const UPDATED_AT_DATE_FORMAT = 'h:mmaaa';
+export const DATE_FORMAT = "MMM dd 'at' h:mmaaa";
 
 export enum QuestionType {
   MULTIPLE_CHOICE = 'Multiple Choice',

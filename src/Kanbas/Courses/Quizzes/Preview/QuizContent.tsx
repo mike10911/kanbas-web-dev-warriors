@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { Question } from '.';
+import { Question, QuestionResult } from '.';
 import QuestionBox from './QuestionBox';
 import { MdArrowRight, MdArrowLeft, MdOutlineEdit } from 'react-icons/md';
 import './QuizContent.css';
@@ -12,6 +12,9 @@ export interface QuizContentProps {
   oneQuestionAtATime: boolean;
   currentQuestionIndex: number;
   questions: Question[];
+  attemptStartDatetime: Date;
+  quizResult: QuestionResult[] | null;
+  quizAnswers: string[][];
   handleChangeQuestion: React.Dispatch<React.SetStateAction<number>>;
   handleSubmit: () => void;
   handleSaveAnswer: (
@@ -25,6 +28,9 @@ export default function QuizContent({
   oneQuestionAtATime,
   currentQuestionIndex,
   questions,
+  attemptStartDatetime,
+  quizResult,
+  quizAnswers,
   handleChangeQuestion,
   handleSubmit,
   handleSaveAnswer,
@@ -32,8 +38,10 @@ export default function QuizContent({
   const { courseId, quizId } = useParams();
   const { answers } = useQuizPreview();
   const [formattedSavedAt, setFormattedSavedAt] = useState(
-    format(new Date(), UPDATED_AT_DATE_FORMAT)
+    format(attemptStartDatetime, UPDATED_AT_DATE_FORMAT)
   );
+  const totalScore = quizResult?.reduce((acc, curr) => acc + curr.score, 0);
+  const quizMaxPoints = questions.reduce((acc, curr) => acc + curr.points, 0);
 
   const handleAnswerSelect = (
     answer: string,
@@ -49,7 +57,7 @@ export default function QuizContent({
       <h3 className='m-0 p-0 fw-bold'>Quiz Instructions</h3>
       <hr />
       <div className='question-box-container align-self-center'>
-        {oneQuestionAtATime && (
+        {oneQuestionAtATime && !quizResult && (
           <>
             <QuestionBox
               question={questions[currentQuestionIndex]}
@@ -87,7 +95,7 @@ export default function QuizContent({
             </div>
           </>
         )}
-        {!oneQuestionAtATime && (
+        {!oneQuestionAtATime && !quizResult && (
           <>
             {questions.map((question, index) => (
               <QuestionBox
@@ -101,29 +109,61 @@ export default function QuizContent({
             ))}
           </>
         )}
+        {quizResult && (
+          <>
+            {questions.map((question, index) => (
+              <QuestionBox
+                key={index}
+                question={question}
+                questionIndex={index}
+                questionAnswers={quizAnswers[index]}
+                questionResult={quizResult[index]}
+                handleAnswerSelect={(answer: string, answerIndex: number) =>
+                  handleAnswerSelect(answer, answerIndex, index)
+                }
+              />
+            ))}
+          </>
+        )}
       </div>
-      <div
-        className='d-flex flex-row justify-content-end align-items-center gap-3 py-2 px-3 m-3 submit-btn-container'
-        style={{
-          border: '1px solid rgb(206, 206, 206)',
-        }}
-      >
-        <p className='m-0 p-0' style={{ color: '#6E7173' }}>
-          Quiz saved at {formattedSavedAt}
-        </p>
-        <div className='disabled-btn'>
-          <button
-            className={`btn ${
-              answers.every((answer) => answer.every((ans) => ans !== ''))
-                ? 'btn-danger'
-                : 'submit-btn'
-            }`}
-            disabled
-          >
-            Submit Quiz
-          </button>
+      {!quizResult && (
+        <div
+          className='d-flex flex-row justify-content-end align-items-center gap-3 py-2 px-3 m-3 submit-btn-container'
+          style={{
+            border: '1px solid rgb(206, 206, 206)',
+          }}
+        >
+          <p className='m-0 p-0' style={{ color: '#6E7173' }}>
+            Quiz saved at {formattedSavedAt}
+          </p>
+          <div className=''>
+            <button
+              className={`btn ${
+                answers.every((answer) => answer.every((ans) => ans !== ''))
+                  ? 'btn-danger'
+                  : 'wd-modules-btn'
+              }`}
+              onClick={handleSubmit}
+            >
+              Submit Quiz
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+      {quizResult !== undefined && totalScore !== undefined && (
+        <div className='d-flex flex-column w-100 py-2 px-3 mt-3'>
+          <p className='fs-5 align-self-end'>
+            Quiz Score:{' '}
+            <strong className='fs-4'>
+              {Number.isInteger(totalScore)
+                ? totalScore
+                : totalScore.toFixed(2)}
+            </strong>{' '}
+            out of {quizMaxPoints}
+          </p>
+        </div>
+      )}
+      <hr className='m-0' />
       <Link
         to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}
         className='w-100 mt-4 text-decoration-none'

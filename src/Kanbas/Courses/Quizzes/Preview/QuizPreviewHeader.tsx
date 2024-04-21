@@ -1,10 +1,6 @@
 import { format } from 'date-fns';
 import StatusBanner from './StatusBanner';
-
-const PREVIEW_BANNER_MESSAGE =
-  'This is a preview of the published version of the quiz';
-
-const DATE_FORMAT = "MMM dd 'at' h:mmaaa";
+import { DATE_FORMAT, PREVIEW_BANNER_MESSAGE } from './constants';
 
 export interface QuizPreviewHeaderProps {
   title: string;

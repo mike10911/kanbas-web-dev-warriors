@@ -35,3 +35,10 @@
   font-weight: normal;
   color: #ebbc4e;
 }
+
+.wd-modules-btn:active {
+  background-color: rgb(221, 221, 221) !important;
+  /* Need these to override bootstrap defaults */
+  color: rgb(41, 41, 41) !important;
+  border: 2px solid red !important;
+}

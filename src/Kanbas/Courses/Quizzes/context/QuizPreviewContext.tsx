@@ -1,8 +1,10 @@
 import React, { createContext } from 'react';
+import { QuestionResult } from '../Preview';
 
 export interface QuizPreviewContextType {
   answers: string[][];
   taggedQuestions: number[];
+  quizResults: QuestionResult[] | null;
   updateTaggedQuestion: (questionIndex: number) => void;
 }
 
