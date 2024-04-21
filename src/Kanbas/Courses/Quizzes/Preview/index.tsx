@@ -64,7 +64,6 @@ const QuizPreview = () => {
       try {
         setError('');
         const res = await client.findQuizById(quizId);
-        console.log('res', res);
         setQuiz(res);
 
         // initialize answers array to have an empty string string for each question/fill in the blank
