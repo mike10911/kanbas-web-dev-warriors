@@ -30,11 +30,15 @@ export default function QuestionList({
   const { taggedQuestions } = useQuizPreview();
   const [showTime, setShowTime] = useState(true);
   const formattedDueDate = format(dueDate, DATE_FORMAT);
+  const hasTimeLimit = timeLimit !== undefined;
   const { seconds, minutes } = useTimer({
     expiryTimestamp: addMinutes(startDatetime, timeLimit ?? 0),
-    onExpire: () => handleSubmit(),
+    onExpire: () => {
+      if (hasTimeLimit) {
+        handleSubmit();
+      }
+    },
   });
-  const hasTimeLimit = timeLimit !== undefined;
 
   const handleTimeToggle = () => setShowTime((st) => !st);
 
