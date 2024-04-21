@@ -10,7 +10,8 @@ import Quizzes from './Quizzes';
 import QuizPreview from './Quizzes/Preview';
 import QuizDetails from './Quizzes/Details';
 import DetailsEditor from './Quizzes/DetailsEditor';
-
+import QuizEditor from "./Quizzes/Editor/QuizEditor";
+import QuestionsTab from "./Quizzes/Editor/QuestionsTab";
 
 export interface CoursesProps {
   courses: Course[];
@@ -27,10 +28,10 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
         courses={courses}
         onHamburgerClick={setShowCourseNav}
       />
-      <hr className='d-none d-lg-block mx-4 my-0' />
-      <div className={`d-flex mx-4 ${showCourseNav ? 'ms-md-0' : ''}`}>
+      <hr className="d-none d-lg-block mx-4 my-0" />
+      <div className={`d-flex mx-4 ${showCourseNav ? "ms-md-0" : ""}`}>
         {showCourseNav && <CourseNavigation courses={courses} />}
-        <div className={'flex-fill my-3'}>
+        <div className={"flex-fill my-3"}>
           <Routes>
             <Route path='/' element={<Navigate to='Home' />} />
             <Route path='Home' element={<Home />} />
@@ -40,12 +41,17 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
             <Route path='Quizzes' element={<Quizzes />} />
             <Route path='Quizzes/:quizId' element={<QuizDetails />} />
             <Route path='Quizzes/:quizId/Editor/Details' element={<DetailsEditor/>} />
-            <Route path='Quizzes/:quizId/preview' element={<QuizPreview />} />
+            <Route path="Quizzes/:quizId/Preview" element={<QuizPreview />} />
             <Route
-              path='Assignments/:assignmentId'
+              path="Quizzes/:quizId/questions"
+              element={<QuestionsTab />}
+            />
+            <Route
+              path="Assignments/:assignmentId"
               element={<h1>Assignment Editor</h1>}
             />
-            <Route path='Grades' element={<h1>Grades</h1>} />
+            <Route path="Quizzes/:quizId" element={<QuizEditor />} />
+            <Route path="Grades" element={<h1>Grades</h1>} />
           </Routes>
         </div>
       </div>
