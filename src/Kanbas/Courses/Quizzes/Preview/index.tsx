@@ -40,6 +40,11 @@ export type Quiz = {
   untilDate: Date;
 };
 
+export type QuestionResult = {
+  score: number;
+  result: boolean[];
+};
+
 const QuizPreview = () => {
   const { quizId } = useParams();
 
@@ -48,7 +53,8 @@ const QuizPreview = () => {
   const [taggedQuestions, setTaggedQuestions] = useState<number[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [quizResults, setQuizResults] = useState<boolean[]>([]);
+  const [quizResults, setQuizResults] = useState<QuestionResult[] | null>(null);
+  const attemptStartDatetime = new Date();
 
   useEffect(() => {
     // fetch quiz from BE
@@ -66,7 +72,7 @@ const QuizPreview = () => {
         setAnswers(
           res.questions.map((question) =>
             question.type === QuestionType.FILL_IN_THE_BLANK
-              ? question.options.map(() => '')
+              ? question.answers.map(() => '')
               : ['']
           )
         );
@@ -82,12 +88,32 @@ const QuizPreview = () => {
     setCurrentQuestionIndex(index);
 
   const handleSubmit = () => {
-    const results = answers.map(
-      (userAnswers, index) =>
-        quiz?.questions[index].answers.every(
-          (ans, i) => ans === userAnswers[i]
-        ) ?? false
-    );
+    const results = answers.map((userAnswers, index) => {
+      const quizAnswers = quiz!.questions[index].answers;
+      const result = userAnswers.map((answer, i) => answer === quizAnswers[i]);
+      const totalCorrect = result.reduce(
+        (correctCount, correct) => (correct ? correctCount + 1 : correctCount),
+        0
+      );
+
+      // round score to 2 decimal places
+      const score =
+        quiz!.questions[index].type === QuestionType.FILL_IN_THE_BLANK
+          ? Number(
+              (
+                (quiz!.questions[index].points / quizAnswers.length) *
+                totalCorrect
+              ).toFixed(2)
+            )
+          : result[0]
+          ? quiz!.questions[index].points
+          : 0;
+
+      return {
+        score,
+        result,
+      };
+    });
     setQuizResults(results);
   };
 
@@ -113,28 +139,42 @@ const QuizPreview = () => {
       value={{
         answers,
         taggedQuestions,
+        quizResults,
         updateTaggedQuestion,
       }}
     >
       <div className='d-flex flex-column gap-1 mb-lg-4'>
         {quiz && !error && (
-          <div className='d-flex flex-xl-row flex-column gap-5'>
+          <div
+            className={`d-flex flex-xl-row flex-column gap-5 ${
+              quizResults ? 'mb-5' : ''
+            }`}
+          >
             <div className='d-flex flex-column w-100'>
               <QuizHeaderPreview title={quiz?.title} startedAt={new Date()} />
               <QuizContent
                 oneQuestionAtATime={quiz.oneQuestionAtATime}
                 currentQuestionIndex={currentQuestionIndex}
                 questions={quiz.questions}
+                attemptStartDatetime={attemptStartDatetime}
+                quizResult={quizResults}
+                quizAnswers={quiz.questions.map((q) => q.answers)}
                 handleChangeQuestion={setCurrentQuestionIndex}
                 handleSubmit={handleSubmit}
                 handleSaveAnswer={handleSaveAnswer}
               />
             </div>
-            <QuestionList
-              questions={quiz.questions}
-              currentQuestionIndex={currentQuestionIndex}
-              handleChangeQuestion={handleChangeQuestion}
-            />
+            {!quizResults && (
+              <QuestionList
+                questions={quiz.questions}
+                currentQuestionIndex={currentQuestionIndex}
+                startDatetime={attemptStartDatetime}
+                timeLimit={quiz.timeLimit}
+                dueDate={quiz.dueDate}
+                handleChangeQuestion={handleChangeQuestion}
+                handleSubmit={handleSubmit}
+              />
+            )}
           </div>
         )}
         {error && <StatusBanner message={error} />}

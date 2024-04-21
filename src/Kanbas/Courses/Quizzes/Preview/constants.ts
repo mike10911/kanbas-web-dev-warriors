@@ -1,4 +1,4 @@
-export const UPDATED_AT_DATE_FORMAT = 'h:mmaaa';
+export const QUIZ_PREVIEW_DATE_FORMAT = 'h:mmaaa';
 
 export enum QuestionType {
   MULTIPLE_CHOICE = 'Multiple Choice',

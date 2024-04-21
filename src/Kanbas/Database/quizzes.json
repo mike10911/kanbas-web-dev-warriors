@@ -1,6 +1,7 @@
 [
   {
-    "_id": 1,
+    "_id": "1",
+    "courseId": "RS101",
     "isPublished": true,
     "questions": [
       {
@@ -106,7 +107,8 @@
     "untilDate": "2024-04-09T23:59:59.999Z"
   },
   {
-    "_id": 2,
+    "_id": "2",
+    "courseId": "RS101",
     "isPublished": true,
     "questions": [
       {
@@ -191,7 +193,8 @@
     "untilDate": "2024-04-09T23:59:59.999Z"
   },
   {
-    "_id": 3,
+    "_id": "3",
+    "courseId": "RS102",
     "isPublished": true,
     "questions": [],
     "title": "Quiz 3",
