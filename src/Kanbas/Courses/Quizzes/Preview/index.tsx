@@ -9,7 +9,6 @@ import StatusBanner from './StatusBanner';
 import { QuestionType, QuizType, AssignmentGroup } from './constants';
 
 export type Question = {
-  _id: number;
   title: string;
   type: QuestionType;
   points: number;
@@ -19,7 +18,7 @@ export type Question = {
 };
 
 export type Quiz = {
-  _id: number;
+  _id: string;
   isPublished: boolean;
   questions: Question[];
   title: string;
