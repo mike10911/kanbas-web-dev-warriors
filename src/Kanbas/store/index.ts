@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import modulesReducer from '../Courses/Modules/modulesReducer';
+import quizzesReducer from './quizzesReducer';
 
 export type Lesson = {
   _id: string;
@@ -17,6 +18,7 @@ export type Module = {
 };
 
 export interface KanbasState {
+  quizzesReducer: any;
   modulesReducer: {
     modules: Module[];
     module: Module;
@@ -25,6 +27,8 @@ export interface KanbasState {
 const store = configureStore({
   reducer: {
     modulesReducer,
+    quizzesReducer,
+
   },
 });
 

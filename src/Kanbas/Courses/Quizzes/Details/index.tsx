@@ -5,41 +5,55 @@ import "../index.css";
 import { Link } from "react-router-dom";
 import { quizzes } from "../../../Database";
 import { FaEllipsisV } from "react-icons/fa";
+import EditorNav from "../DetailsEditor/EditorNav";
+import { setPublish } from "../../../store/quizzesReducer";
+import { useDispatch } from "react-redux";
+import * as client from "../client";
 
 interface QuizDetailsProps {
     quizId: string;
 }
 
 const QuizDetails = () => {
-    // const [quiz, setQuiz] = useState<any>(null);
+    const [quiz, setQuiz] = useState<any>(null);
     const { quizId } = useParams();
-    const quiz = quizzes.find((quiz) => quiz._id === quizId);
-    // const API_BASE = process.env.REACT_APP_API_BASE;
+    const API_BASE = process.env.REACT_APP_API_BASE;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        // Fetch quiz details from API using quizId
+        // Replace the API_URL with your actual API endpoint
+        fetch(`${API_BASE}/api/quizzes/${quizId}`)
+            .then((response) => response.json())
+            .then((data) => setQuiz(data))
+            .catch((error) => console.error(error));
+    }, [API_BASE, quizId]);
 
-    // axios
-    // useEffect(() => {
-    //     findCourseQuizzes(courseId)
-    //         .then((data) => {
-    //             setQuizzes(data);
-    //             setLoading(false);
-    //         })
-    //         .catch((error) => {
-    //             setError(error.message);
-    //             setLoading(false);
-    //         });
-    // }, [courseId]);
+    const isPublished = quiz?.isPublished;
+    const handlePublish = () => {
+        client.publishQuiz(quizId, !isPublished);
+        dispatch(setPublish({ quizId, isPublished: !isPublished }));
+        window.location.reload();
+      };
 
     if (!quiz) {
-        return <div>Loading details...⏳</div>;
+        return <div>Loading quiz details...</div>;
     }
 
+
     return (
-        <div className="text-left">
+        <><div className="text-left">
             <h1>{quiz.title}</h1>
             <div className="d-flex justify-content-end gap-2">
-                <Link type="button" to={`...`} className="btn btn-success">
+                {/* <Link type="button" to={`...`} className="btn btn-success">
                     Publish
-                </Link>
+                </Link> */}
+                {quiz.isPublished ? (
+                                <button  className="btn btn-danger" onClick={handlePublish}>
+                                  Unpublish
+                                </button>
+                              ) : (
+                                <button className="btn btn-success" onClick={handlePublish}>Publish</button>
+                              )}
                 <Link
                     type="button"
                     to={`Preview`}
@@ -158,7 +172,7 @@ const QuizDetails = () => {
                     </td>
                 </tr>
             </table>
-        </div>
+        </div></>
     );
 };
 

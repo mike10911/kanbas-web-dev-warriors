@@ -8,7 +8,8 @@ import {
     FaPlus,
     FaRegCheckCircle,
 } from "react-icons/fa";
-import { useParams } from "react-router";
+
+import { useNavigate, useParams } from "react-router";
 import { KanbasState, Module } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,98 +24,113 @@ import axios from "axios";
 // impport quiz data from mock data json file
 import { quizzes } from "../../Database";
 import { MdOutlineRocketLaunch } from "react-icons/md";
+import EditorNav from "./DetailsEditor/EditorNav";
+import {
+    addQuiz,
+    deleteQuiz,
+    updateQuiz,
+    setQuiz,
+    setQuizzes,
+    setPublish,
+} from "../../store/quizzesReducer";
+import * as client from "./client";
+import { Quiz } from "./client";
 const API_BASE = process.env.REACT_APP_API_BASE;
 const QUIZ_API = `${API_BASE}/api`;
 
-interface Question {
-    _id: string;
-    type: string;
-    points: number;
-    description: string;
-    options: string[];
-    answers: string[];
-}
-
-interface Quiz {
-    _id: string;
-    courseId: string;
-    isPublished: boolean;
-    questions: Question[];
-    title: string;
-    description: string;
-    type: string;
-    points: number;
-    assignmentGroup: string;
-    shuffleAnswers: boolean;
-    timeLimit: number;
-    multipleAttempts: boolean;
-    showCorrectAnswers: string;
-    accessCode: string;
-    oneQuestionAtATime: boolean;
-    webcamRequired: boolean;
-    lockQuestionsAfterAnswering: boolean;
-    dueDate: string;
-    availableDate: string;
-    untilDate: string;
-}
-
-export async function findCourseQuizzes(courseId: string): Promise<Quiz[]> {
-    const response = await axios.get(`${QUIZ_API}/${courseId}/quizzes`);
-    return response.data;
-}
-export const createQuiz = async (courseId: any, quiz: any) => {
-    const response = await axios.post(`${QUIZ_API}/${courseId}/quizzes`, quiz);
-    return response.data;
-};
-
 function QuizList() {
-    // const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-    // const [loading, setLoading] = useState<boolean>(true);
-    // const [error, setError] = useState<string | null>(null);
-    // const { courseId } = useParams();
-    // TODO: filter by courseId
+    const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const { courseId } = useParams();
+    const navigate = useNavigate();
+    const [contextMenu, setContextMenu] = useState<{ [key: string]: boolean }>(
+        {}
+    );
+    const toggleContextMenu = (quizId: string) => {
+        setContextMenu((prev) => ({ ...prev, [quizId]: !prev[quizId] }));
+    };
+    const dispatch = useDispatch();
+    //randomly genreate ID
+    const defaultQuiz = {
+        _id: Math.random().toString(36),
+        courseId: "",
+        isPublished: true,
+        questions: [],
+        title: "Sample Quiz",
+        description: "This is a sample quiz to test your knowledge.",
+        type: "Graded Quiz",
+        points: 10,
+        assignmentGroup: "Quizzes",
+        shuffleAnswers: true,
+        timeLimit: 20,
+        multipleAttempts: false,
+        showCorrectAnswers: "2024-04-10T00:00:00.000Z",
+        accessCode: "",
+        oneQuestionAtATime: true,
+        webcamRequired: false,
+        lockQuestionsAfterAnswering: false,
+        dueDate: "2024-04-10T00:00:00.000Z",
+        availableDate: "2024-04-10T00:00:00.000Z",
+        untilDate: "2024-04-10T00:00:00.000Z",
+    };
+    
+    const handleAddQuiz = () => {
+      if (!courseId) return;
+      defaultQuiz.courseId = courseId;
+      client.createQuiz(defaultQuiz).then((defaultQuiz) => {
+        dispatch(addQuiz(defaultQuiz));
+        const quizId = defaultQuiz._id;
+        navigate(`./${quizId}/editor/Details`);
+      }
+    )};
 
-    // const  handleAddQuiz = () => {
-    //     // add quiz
-    //     const newQuiz = {
-    //         courseId: '',
-    //         isPublished: false,
-    //         questions: [],
-    //         title: "New Quiz",
-    //         description: "This is a new quiz",
-    //         type: "Graded Quiz",
-    //         points: 10,
-    //         assignmentGroup: "Quizzes",
-    //         shuffleAnswers: false,
-    //         timeLimit: 0,
-    //         multipleAttempts: false,
-    //         showCorrectAnswers: "",
-    //         accessCode: "",
-    //         oneQuestionAtATime: false,
-    //         webcamRequired: false,
-    //         lockQuestionsAfterAnswering: false,
-    //         dueDate: "2022-12-31T23:59:59.999Z",
-    //         availableDate: "2022-12-31T23:59:59.999Z",
-    //         untilDate: "2022-12-31T23:59:59.999Z",
-    //     };
-    //     createQuiz(courseId, newQuiz);
-    // }
+    useEffect(() => {
+        if (courseId) {
+            client
+                .findCourseQuizzes(courseId)
+                .then((data) => {
+                    setQuizzes(data);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    setError(error.message);
+                    setLoading(false);
+                });
+        }
+    }, [courseId]);
 
-    // useEffect(() => {
-    //     const fetchQuizzes = async () => {
-    //         try {
-    //             const data = await findCourseQuizzes(courseId || "");
-    //             setQuizzes(data || []);
-    //             setLoading(false);
-    //         } catch (err) {
-    //             setError("Failed to fetch quizzes");
-    //             setLoading(false);
-    //             setQuizzes([]);
-    //         }
-    //     };
+    const handleEditQuiz = (quizId: string) => {
+        navigate(`./${quizId}/editor/Details`);
+    };
+    const handleDeleteQuiz = async (quizId: string) => {
+        try {
+            await deleteQuiz(quizId);
+            setQuizzes((prevQuizzes) =>
+                prevQuizzes.filter((quiz) => quiz._id !== quizId)
+            );
+        } catch (error) {
+            console.error("Failed to delete quiz", error);
+            setError("Failed to delete quiz");
+        }
+    };
 
-    //     fetchQuizzes();
-    // }, [courseId]);
+    const handlePublishToggle = async (quizId: string, quiz: Quiz) => {
+        const updatedQuiz = { ...quiz, published: !quiz.isPublished };
+        try {
+            await updateQuiz(updatedQuiz);
+            setQuizzes((prevQuizzes) =>
+                prevQuizzes.map((q) => (q._id === quiz._id ? updatedQuiz : q))
+            );
+        } catch (error) {
+            console.error("Failed to toggle publish status", error);
+            setError("Failed to update quiz");
+        }
+    };
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
     function getAvailabilityStatus(quiz: Quiz): string {
         const now = new Date();
         const availableDate = new Date(quiz.availableDate);
@@ -138,7 +154,10 @@ function QuizList() {
                     placeholder="Search for Quiz"
                 />
                 <div className="d-flex gap-1">
-                    <button className="btn btn-danger d-flex align-items-center">
+                    <button
+                        onClick={handleAddQuiz}
+                        className="btn btn-danger d-flex align-items-center"
+                    >
                         <FaPlus className="me-1" /> Quiz
                     </button>
                     <button className="btn wd-modules-btn p-1">

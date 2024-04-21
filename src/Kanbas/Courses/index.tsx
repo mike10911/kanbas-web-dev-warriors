@@ -9,6 +9,8 @@ import { Course } from '..';
 import Quizzes from './Quizzes';
 import QuizPreview from './Quizzes/Preview';
 import QuizDetails from './Quizzes/Details';
+import DetailsEditor from './Quizzes/DetailsEditor';
+
 
 export interface CoursesProps {
   courses: Course[];
@@ -37,6 +39,7 @@ const Courses: React.FC<CoursesProps> = ({ courses }) => {
             <Route path='Assignments' element={<Assignments />} />
             <Route path='Quizzes' element={<Quizzes />} />
             <Route path='Quizzes/:quizId' element={<QuizDetails />} />
+            <Route path='Quizzes/:quizId/Editor/Details' element={<DetailsEditor/>} />
             <Route path='Quizzes/:quizId/preview' element={<QuizPreview />} />
             <Route
               path='Assignments/:assignmentId'
