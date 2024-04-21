@@ -192,7 +192,7 @@ function QuizList() {
                                     </div>
                                 </div>
                             </div>
-                            <span className="d-flex flex-row gap-1">
+                            <span onClick={() => handlePublishToggle(quiz._id, quiz)} className="d-flex flex-row gap-1">
                                 {quiz.isPublished ? (
                                     <FaCheckCircle className="text-success" />
                                 ) : (
