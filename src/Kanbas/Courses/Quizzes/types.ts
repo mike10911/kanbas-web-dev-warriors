@@ -1,8 +1,4 @@
-export enum QuestionType {
-  MultipleChoice = "Multiple Choice",
-  TrueFalse = "True/False",
-  FillInTheBlank = "Fill in the Blank",
-}
+import { QuestionType } from "./Preview/constants";
 
 export type Question = {
   title: string;

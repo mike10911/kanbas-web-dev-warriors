@@ -1,10 +1,11 @@
 import { FormEvent, useEffect, useState } from "react";
-import { Question, QuestionType } from "../types";
+import { Question } from "../types";
 import "./QuestionEditor.css";
 import MCQuestionAnswer from "./MCQuestionAnswer";
 import { FaCheck } from "react-icons/fa";
 import TFQuestionAnswer from "./TFQuestionAnswer";
 import FillInTheBlankQuestionAnswer from "./FillInTheBlankQuestionAnswer";
+import { QuestionType } from "../Preview/constants";
 
 export interface QuizEditableQuestionProps {
   question: Question;
@@ -86,9 +87,11 @@ function QuestionEditor({
             onChange={handleQuestionTypeChange}
             value={question.type}
           >
-            <option value={QuestionType.MultipleChoice}>Multiple Choice</option>
-            <option value={QuestionType.TrueFalse}>True/False</option>
-            <option value={QuestionType.FillInTheBlank}>
+            <option value={QuestionType.MULTIPLE_CHOICE}>
+              Multiple Choice
+            </option>
+            <option value={QuestionType.TRUE_FALSE}>True/False</option>
+            <option value={QuestionType.FILL_IN_THE_BLANK}>
               Fill in the Blank
             </option>
           </select>
@@ -116,13 +119,13 @@ function QuestionEditor({
           />{" "}
         </div>
         Answers:
-        {question.type === QuestionType.MultipleChoice ? (
+        {question.type === QuestionType.MULTIPLE_CHOICE ? (
           <MCQuestionAnswer
             question={question}
             index={index}
             updateQuestion={updateQuestion}
           />
-        ) : question.type === QuestionType.TrueFalse ? (
+        ) : question.type === QuestionType.TRUE_FALSE ? (
           <TFQuestionAnswer
             question={question}
             index={index}
