@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import React from "react";
 
 export const formatDate = (dateString: any) => {
   const date = new Date(dateString);

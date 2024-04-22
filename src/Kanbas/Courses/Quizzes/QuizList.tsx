@@ -1,42 +1,14 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-import {
-    FaEllipsisV,
-    FaCheckCircle,
-    FaGripVertical,
-    FaCaretDown,
-    FaPlus,
-    FaRegCheckCircle,
-} from "react-icons/fa";
-
+import { FaEllipsisV, FaCheckCircle, FaPlus } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router";
-import { KanbasState, Module } from "../../store";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    addModule,
-    deleteModule,
-    setModule,
-    updateModule,
-} from "../Modules/modulesReducer";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { formatDate } from "../Assignments";
-import axios from "axios";
-// impport quiz data from mock data json file
-import { quizzes } from "../../Database";
 import { MdOutlineRocketLaunch } from "react-icons/md";
-import EditorNav from "./DetailsEditor/EditorNav";
-import {
-    addQuiz,
-    deleteQuiz,
-    updateQuiz,
-    setQuiz,
-    setQuizzes,
-    setPublish,
-} from "../../store/quizzesReducer";
+import { addQuiz, deleteQuiz, setPublish } from "../../store/quizzesReducer";
 import * as client from "./client";
 import { Quiz } from "./client";
-const API_BASE = process.env.REACT_APP_API_BASE;
-const QUIZ_API = `${API_BASE}/api`;
 
 function QuizList() {
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -74,16 +46,16 @@ function QuizList() {
         availableDate: "2024-04-10T00:00:00.000Z",
         untilDate: "2024-04-10T00:00:00.000Z",
     };
-    
+
     const handleAddQuiz = () => {
-      if (!courseId) return;
-      defaultQuiz.courseId = courseId;
-      client.createQuiz(defaultQuiz).then((defaultQuiz) => {
-        dispatch(addQuiz(defaultQuiz));
-        const quizId = defaultQuiz._id;
-        navigate(`./${quizId}/editor/Details`);
-      }
-    )};
+        if (!courseId) return;
+        defaultQuiz.courseId = courseId;
+        client.createQuiz(defaultQuiz).then((defaultQuiz) => {
+            dispatch(addQuiz(defaultQuiz));
+            const quizId = defaultQuiz._id;
+            navigate(`./${quizId}/editor/Details`);
+        });
+    };
 
     useEffect(() => {
         if (courseId) {
@@ -108,14 +80,13 @@ function QuizList() {
             dispatch(deleteQuiz(quizId));
         });
         window.location.reload();
-      
     };
 
     const handlePublishToggle = async (quizId: string, quiz: Quiz) => {
-      const isPublished = quiz.isPublished;
-      client.publishQuiz(quizId, !isPublished);
-      dispatch(setPublish({ quizId, isPublished: !isPublished }));
-      window.location.reload();
+        const isPublished = quiz.isPublished;
+        client.publishQuiz(quizId, !isPublished);
+        dispatch(setPublish({ quizId, isPublished: !isPublished }));
+        window.location.reload();
     };
 
     if (loading) return <div>Loading...</div>;
@@ -192,25 +163,59 @@ function QuizList() {
                                     </div>
                                 </div>
                             </div>
-                            <span onClick={() => handlePublishToggle(quiz._id, quiz)} className="d-flex flex-row gap-1">
+                            <span
+                                onClick={() =>
+                                    handlePublishToggle(quiz._id, quiz)
+                                }
+                                className="d-flex flex-row gap-1"
+                            >
                                 {quiz.isPublished ? (
                                     <FaCheckCircle className="text-success" />
                                 ) : (
                                     "🚫"
                                 )}
-                                <FaEllipsisV className="ms-2" onClick={(e) => {
-                            e.stopPropagation();
-                            toggleContextMenu(quiz._id);
-                        }}>⋮</FaEllipsisV>
-                        {contextMenu[quiz._id] && (
-                            <div className="quiz-context-menu">
-                                <button className="rounded" onClick={() => handleEditQuiz(quiz._id)}>Edit</button>
-                                <button className="rounded" onClick={() => handleDeleteQuiz(quiz._id)}>Delete</button>
-                                <button className="rounded" onClick={() => handlePublishToggle(quiz._id, quiz)}>
-                                    {quiz.isPublished ? 'Unpublish' : 'Publish'}
-                                </button>
-                            </div>
-                        )}
+                                <FaEllipsisV
+                                    className="ms-2"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleContextMenu(quiz._id);
+                                    }}
+                                >
+                                    ⋮
+                                </FaEllipsisV>
+                                {contextMenu[quiz._id] && (
+                                    <div className="quiz-context-menu">
+                                        <button
+                                            className="rounded"
+                                            onClick={() =>
+                                                handleEditQuiz(quiz._id)
+                                            }
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            className="rounded"
+                                            onClick={() =>
+                                                handleDeleteQuiz(quiz._id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                        <button
+                                            className="rounded"
+                                            onClick={() =>
+                                                handlePublishToggle(
+                                                    quiz._id,
+                                                    quiz
+                                                )
+                                            }
+                                        >
+                                            {quiz.isPublished
+                                                ? "Unpublish"
+                                                : "Publish"}
+                                        </button>
+                                    </div>
+                                )}
                             </span>
                         </div>
                     ))
