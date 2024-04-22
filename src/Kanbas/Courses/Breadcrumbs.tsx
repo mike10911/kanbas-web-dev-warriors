@@ -43,7 +43,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       const quizId = pathname.split("/Quizzes").at(-1)?.split("/").at(1);
       quizId && fetchQuizTitle(quizId);
     }
-  }, [page]);
+  }, [page, pathname]);
 
   return (
     <div className="d-none d-lg-flex justify-content-between align-items-center px-4 py-3">

@@ -75,7 +75,7 @@ const KanbasNavigation: React.FC<KanbasNavigationProps> = ({ courses }) => {
           </p>
         );
     }
-  }, [pathname]);
+  }, [courses, pathname]);
   const links = [
     {
       label: 'Account',

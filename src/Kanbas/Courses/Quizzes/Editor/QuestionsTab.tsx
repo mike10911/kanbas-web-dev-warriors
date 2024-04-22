@@ -26,7 +26,7 @@ function QuestionsTab() {
       }
     };
     getQuiz();
-  }, []);
+  }, [quizId]);
 
   const addNewQuestion = () => {
     const newQuestion: Question = {
