@@ -142,7 +142,7 @@ const QuizPreview = () => {
       }}
     >
       <div className='d-flex flex-column justify-content-center gap-1 mb-lg-4'>
-        {quiz && !error && (
+        {quiz && quiz.questions.length > 0 && !error && (
           <div
             className={`d-flex flex-xl-row flex-column gap-5 ${
               quizResults ? 'mb-5' : ''
@@ -177,6 +177,9 @@ const QuizPreview = () => {
               />
             )}
           </div>
+        )}
+        {quiz && quiz.questions.length === 0 && !error && (
+          <StatusBanner message='This quiz has no questions.' />
         )}
         {error && <StatusBanner message={error} />}
       </div>
