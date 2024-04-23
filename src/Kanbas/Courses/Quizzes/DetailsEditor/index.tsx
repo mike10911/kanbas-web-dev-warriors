@@ -113,7 +113,7 @@ const DetailsEditor = () => {
                   <div className="col">
                     <input
                       type="number"
-                      value={quiz?.point}
+                      value={quiz?.points}
                       onChange={(e) =>
                         dispatch(
                           setQuiz({
@@ -194,7 +194,7 @@ const DetailsEditor = () => {
                         <input
                           id="timeLimit"
                           type="number"
-                          value={quiz!.timeLimitMinutes}
+                          value={quiz!.timeLimit}
                           onChange={(e) =>
                             dispatch(
                               setQuiz({
