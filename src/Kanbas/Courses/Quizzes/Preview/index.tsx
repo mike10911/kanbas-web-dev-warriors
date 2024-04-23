@@ -7,6 +7,8 @@ import { QuizPreviewProvider } from '../context/QuizPreviewContext';
 import * as client from './client';
 import StatusBanner from './StatusBanner';
 import { QuestionType, QuizType, AssignmentGroup } from './constants';
+import { MdOutlineEdit } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 export type Question = {
   title: string;
@@ -45,7 +47,7 @@ export type QuestionResult = {
 };
 
 const QuizPreview = () => {
-  const { quizId } = useParams();
+  const { courseId, quizId } = useParams();
 
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [answers, setAnswers] = useState<string[][]>([]);
@@ -142,7 +144,7 @@ const QuizPreview = () => {
       }}
     >
       <div className='d-flex flex-column justify-content-center gap-1 mb-lg-4'>
-        {quiz && !error && (
+        {quiz && quiz.questions.length > 0 && !error && (
           <div
             className={`d-flex flex-xl-row flex-column gap-5 ${
               quizResults ? 'mb-5' : ''
@@ -177,6 +179,25 @@ const QuizPreview = () => {
               />
             )}
           </div>
+        )}
+        {quiz && quiz.questions.length === 0 && !error && (
+          <>
+            <StatusBanner message='This quiz has no questions.' />
+            <hr className='mb-0 mt-5' />
+            <Link
+              to={`/Kanbas/Courses/${courseId}/Quizzes/${quizId}`}
+              className='w-100 mt-4 text-decoration-none'
+            >
+              <button className='btn wd-modules-btn d-flex justify-content-start gap-1 w-100'>
+                <MdOutlineEdit
+                  style={{
+                    transform: 'rotateY(180deg)',
+                  }}
+                />
+                Keep Editing This Quiz
+              </button>
+            </Link>
+          </>
         )}
         {error && <StatusBanner message={error} />}
       </div>
